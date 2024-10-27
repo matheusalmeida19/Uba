@@ -1,3 +1,4 @@
+Ubá
 Ubá é um site web desenvolvido para facilitar a compra de passagens de barcos e lanchas, focado inicialmente na região norte do Brasil. O projeto visa atender as necessidades de mobilidade de pessoas que dependem de transporte fluvial para viajar entre os diversos municípios da região. A plataforma oferece uma experiência de compra prática e segura, conectando passageiros e operadores de transporte.
 
 Funcionalidades
