@@ -1,13 +1,21 @@
-**PROJETO UBÁ**
+# Ubá
+Ubá é um site web desenvolvido para facilitar a compra de passagens de barcos e lanchas, focado inicialmente na região norte do Brasil. O projeto visa atender as necessidades de mobilidade de pessoas que dependem de transporte fluvial para viajar entre os diversos municípios da região. A plataforma oferece uma experiência de compra prática e segura, conectando passageiros e operadores de transporte.
 
-O projeto Ubá tem como objetivo a criação de um protótipo de site para a realização de viagens fluviais, assim como um app mobile. Esse trabalho será referente ao InovaTec, uma feira de inovações tecnológicas oferecida pela nossa faculdade CEUNI Fametro, cujo tema deste ano é "Cidades Inteligentes". Com isso, o novo projeto propõe o acesso e a compra de passagens fluviais de forma mais tecnológica e simples, para otimizar a vida do cidadão amazonense.
+Funcionalidades
+Compra de Passagens: Plataforma para busca e compra de passagens de barcos e lanchas.
+Informações de Viagens: Exibe rotas, horários e informações sobre os barcos disponíveis.
+Acessibilidade e Usabilidade: Interface intuitiva e responsiva, pensada para todos os tipos de dispositivos.
+Segurança: Foco na proteção dos dados pessoais e segurança das transações financeiras.
 
-Neste repositório, teremos apenas a parte do desenvolvimento back-end, da qual a nossa equipe ficou responsável!
+Objetivo
+O projeto Ubá busca promover a integração e o desenvolvimento regional por meio de uma solução tecnológica que facilita o deslocamento de pessoas, oferecendo maior comodidade e eficiência na compra de passagens para o transporte fluvial.
 
-Membros:
-- LIANDRA DA SILVA
-- MARIA EDUARDA VALENTE
-- RACHEL ALBUQUERQUE
-  
-LINK para acesso ao site:
-https://dwdaa.github.io/uba/
+Tecnologias Utilizadas
+Front-end: HTML, CSS, JavaScript
+Back-end: Node.js, Express.js
+Banco de Dados: 
+Hospedagem: 
+
+Sobre o Nome "Ubá"
+O nome Ubá faz referência às tradicionais canoas indígenas utilizadas na região norte do Brasil, simbolizando a conexão com a cultura local e a importância dos transportes fluviais para a mobilidade e integração das comunidades.
+>>>>>>> 0654b5275658057b8b9ed2c350a8ec2bf71928ab
