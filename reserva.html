@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservar | UBÁ Passagens Fluviais</title>
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+    <header>
+        <div class="logo">UBÁ Passagens Fluviais</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="sobre.html">Sobre</a></li>
+                <li><a href="destino.html">Destinos</a></li>
+                <li><a href="reserva.html">Reservar</a></li>
+                <li><a href="contato.html">Contato</a></li>
+            </ul>
+            <button class="login-btn">Login</button>
+        </nav>
+    </header>
+
+    <section class="reservas" id="reservar">
+        <h2>Reservas</h2>
+        <p>Para fazer sua reserva, selecione o destino e a data desejada. Em seguida, complete o formulário abaixo e
+            finalize seu pagamento.</p>
+
+        <form action="#" method="post">
+            <!-- Escolha do destino -->
+            <label for="destino">Destino:</label>
+            <select id="destino" name="destino" onchange="mostrarDescricao()">
+                <option value="parintins">Parintins</option>
+                <option value="urucara">Urucará</option>
+                <option value="maues">Maués</option>
+                <option value="humaita">Humaitá</option>
+                <option value="itacoatiara">Itacoatiara</option>
+                <option value="tefe">Tefé</option>
+            </select>
+
+            <!-- Descrição do destino -->
+            <p id="descricao-destino" class="descricao-destino">Selecione um destino para ver mais informações.</p>
+
+            <!-- Data da viagem -->
+            <label for="data">Data:</label>
+            <input type="date" id="data" name="data" required>
+
+            <!-- Escolha de classe de assento -->
+            <label for="classe">Classe:</label>
+            <select id="classe" name="classe">
+                <option value="economica">Econômica</option>
+                <option value="executiva">Executiva</option>
+                <option value="vip">VIP</option>
+            </select>
+
+            <!-- Número de passageiros -->
+            <label for="passageiros">Número de passageiros:</label>
+            <input type="number" id="passageiros" name="passageiros" min="1" max="10" value="1" required>
+
+            <!-- Tipo de pagamento -->
+            <label for="pagamento">Tipo de Pagamento:</label>
+            <select id="pagamento" name="pagamento">
+                <option value="cartao_credito">Cartão de Crédito</option>
+                <option value="boleto">Boleto Bancário</option>
+                <option value="pix">Pix</option>
+            </select>
+
+            <!-- Botão de reserva -->
+            <button type="button" onclick="mostrarResumo()">Reservar</button>
+        </form>
+
+        <!-- Resumo da reserva -->
+        <div id="resumo" class="resumo">
+            <h3>Resumo da Reserva</h3>
+            <p id="resumo-conteudo">Escolha seu destino, data, classe, e tipo de pagamento para ver o resumo.</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="logo">UBÁ Passagens Fluviais</div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#destinos">Destinos</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </footer>
+
+    <script>
+        function mostrarDescricao() {
+            const destino = document.getElementById("destino").value;
+            const descricaoDestino = document.getElementById("descricao-destino");
+
+            switch (destino) {
+                case "parintins":
+                    descricaoDestino.textContent = "Parintins: Um destino cultural famoso pelo Festival Folclórico de Parintins.";
+                    break;
+                case "urucara":
+                    descricaoDestino.textContent = "Urucará: Localizado no Amazonas, oferece paisagens naturais exuberantes.";
+                    break;
+                case "maues":
+                    descricaoDestino.textContent = "Maués: Conhecida como a terra do guaraná, cercada por natureza e rios.";
+                    break;
+                case "humaita":
+                    descricaoDestino.textContent = "Humaitá: Cidade histórica com belas paisagens à beira do Rio Madeira.";
+                    break;
+                case "itacoatiara":
+                    descricaoDestino.textContent = "Itacoatiara: Cidade conhecida por suas belas praias fluviais e atividades náuticas.";
+                    break;
+                case "tefe":
+                    descricaoDestino.textContent = "Tefé: Porta de entrada para a Reserva de Desenvolvimento Sustentável Mamirauá.";
+                    break;
+                default:
+                    descricaoDestino.textContent = "Selecione um destino para ver mais informações.";
+            }
+        }
+
+        function mostrarResumo() {
+            const destino = document.getElementById("destino").value;
+            const data = document.getElementById("data").value;
+            const classe = document.getElementById("classe").value;
+            const passageiros = document.getElementById("passageiros").value;
+            const pagamento = document.getElementById("pagamento").value;
+
+            const resumoConteudo = `
+                <strong>Destino:</strong> ${destino}<br>
+                <strong>Data:</strong> ${data}<br>
+                <strong>Classe:</strong> ${classe}<br>
+                <strong>Passageiros:</strong> ${passageiros}<br>
+                <strong>Tipo de Pagamento:</strong> ${pagamento}
+            `;
+
+            document.getElementById("resumo-conteudo").innerHTML = resumoConteudo;
+        }
+    </script>
+</body>
+
+</html>

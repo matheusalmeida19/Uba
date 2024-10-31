@@ -1,0 +1,543 @@
+/* Configurações básicas para ocupar a tela inteira */
+html,
+body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+    color: #333;
+    background-color: #f5f5f5;
+}
+
+/* Estilos globais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilo do header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1C2A48;
+    color: white;
+    padding: 20px;
+}
+
+header .logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+header nav ul li {
+    margin: 0 15px;
+}
+
+header nav ul li a,
+.login-btn {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.login-btn {
+    background-color: #007EA7;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+header .login-btn:hover {
+    background-color: #005f7f;
+}
+
+/* Estilos do banner */
+.banner {
+    background-image: url('../image/portodemanaus.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    padding: 100px 20px;
+}
+
+.banner h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+.banner .cta-btn {
+    background-color: #007EA7;
+    border: none;
+    padding: 15px 30px;
+    font-size: 18px;
+    color: white;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.como-funciona {
+    background-color: #ffffff;
+    padding: 40px 20px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    max-width: 100%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+
+}
+.como-funciona {
+    background-color: #f4f4f4;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.como-funciona h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.etapas {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.etapa {
+    width: 30%;
+    min-width: 250px;
+    margin: 10px;
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.etapa:hover {
+    transform: translateY(-5px);
+}
+
+.etapa i {
+    font-size: 2em;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.etapa h3 {
+    font-size: 1.5em;
+    color: #333;
+}
+
+.etapa p {
+    font-size: 1em;
+    color: #666;
+}
+
+.chamada-para-acao {
+    margin-top: 30px;
+}
+
+.botao-reservar {
+    text-decoration: none;
+    background-color: #007bff;
+    color: #fff;
+    padding: 15px 30px;
+    border-radius: 5px;
+    font-size: 1.2em;
+    transition: background-color 0.3s;
+}
+
+.botao-reservar:hover {
+    background-color: #0056b3;
+}
+
+/*---- FIM DA SESSAO PRINCIPAL-----*/
+
+/* Estilos para a página Destinos */
+.destinos {
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.destinos h2 {
+    font-size: 36px;
+    margin-bottom: 30px;
+}
+
+.destinos-cards {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background-color: #f9f9f9;
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 30%;
+}
+
+.card img {
+    width: 100%;
+    border-radius: 8px;
+    max-width: 1024px;
+    height: 300px;
+}
+
+.card h3 {
+    margin: 15px 0;
+}
+
+.card p {
+    font-weight: bold;
+    color: #007EA7;
+}
+
+.card button {
+    background-color: #007EA7;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+
+}
+
+.card a {
+    text-decoration: none;
+    color: #fff;
+}
+
+/* Estilos para a página Sobre */
+.sobre {
+    padding: 50px 20px;
+    text-align: center;
+    background-color: #f4f4f4;
+    flex: 1;
+}
+
+.sobre h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #1C2A48;
+}
+
+.sobre-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.sobre-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: transform 0.3s;
+}
+
+.sobre-item:hover {
+    transform: translateY(-5px);
+}
+
+.sobre-texto {
+    max-width: 600px;
+    margin-left: 20px;
+}
+
+.sobre-texto h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #007EA7;
+}
+
+.sobre-texto p {
+    font-size: 16px;
+    color: #666;
+}
+
+.sobre-imagem {
+    width: 150px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para a página Reservas */
+.reservas {
+    padding: 50px 20px;
+    text-align: center;
+    flex: 1;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.reservas h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #1C2A48;
+}
+
+.reservas p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.reservas form {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.reservas label {
+    font-weight: bold;
+    align-self: flex-start;
+    margin-top: 10px;
+}
+
+.reservas input,
+.reservas select {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.reservas button {
+    background-color: #007EA7;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    width: 100%;
+    max-width: 400px;
+    margin-top: 20px;
+}
+
+.reservas button:hover {
+    background-color: #005f7f;
+}
+
+.resumo {
+    background-color: #e8f4f8;
+    border: 1px solid #007EA7;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 30px;
+    font-size: 16px;
+    color: #333;
+    display: none;
+}
+
+.resumo h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #1C2A48;
+}
+
+/* Estilos específicos para a página de Contato */
+.contato {
+    padding: 50px 20px;
+    text-align: center;
+    flex: 1;
+}
+
+.contato h2 {
+    font-size: 36px;
+    color: #1C2A48;
+    margin-bottom: 20px;
+}
+
+.contato p {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 30px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contato form {
+    display: inline-block;
+    text-align: left;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+}
+
+.contato label {
+    display: block;
+    margin: 10px 0 5px;
+    font-size: 16px;
+    color: #1C2A48;
+}
+
+.contato input,
+.contato textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.contato textarea {
+    height: 120px;
+}
+
+.contato button {
+    background-color: #007EA7;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    width: 100%;
+}
+
+.contato button:hover {
+    background-color: #005f7f;
+}
+
+/* Estilos para o footer */
+footer {
+    background-color: #1C2A48;
+    color: #fff;
+    padding: 1em;
+    text-align: center;
+    width: 100%;
+    margin-top: auto;
+}
+
+footer nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+footer nav ul li {
+    display: inline;
+    margin: 0 10px;
+}
+
+footer nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+    .destinos-cards .card {
+        width: 45%;
+    }
+}
+
+@media (max-width: 768px) {
+    header .logo {
+        font-size: 20px;
+    }
+
+    header nav ul {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .reservas h2 {
+        font-size: 28px;
+    }
+
+    .reservas form {
+        padding: 20px;
+    }
+
+    .destinos-cards .card,
+    .contato-info,
+    .contato form {
+        max-width: 90%;
+        width: 100%;
+    }
+
+    footer nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    header .logo,
+    header .login-btn {
+        margin-bottom: 10px;
+    }
+
+    .banner h1 {
+        font-size: 24px;
+    }
+
+    .reservas h2,
+    .contato h2 {
+        font-size: 24px;
+    }
+
+    .reservas p,
+    .reservas label,
+    .contato p,
+    .contato label {
+        font-size: 14px;
+    }
+
+    .reservas input,
+    .reservas select,
+    .reservas button,
+    .contato input,
+    .contato textarea,
+    .contato button {
+        width: 100%;
+    }
+}
