@@ -14,7 +14,7 @@ Tecnologias Utilizadas
 Front-end: HTML, CSS, JavaScript
 Back-end: Node.js, Express.js
 Banco de Dados: 
-Hospedagem: 
+Hospedagem: Render
 
 Sobre o Nome "Ubá"
 O nome Ubá faz referência às tradicionais canoas indígenas utilizadas na região norte do Brasil, simbolizando a conexão com a cultura local e a importância dos transportes fluviais para a mobilidade e integração das comunidades.
