@@ -19,14 +19,14 @@ ul{
 }
 a{
     text-decoration: none;
-    color: black;
+    color: white;
 }
-
 /* Estilos globais */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    
 }
 
 /* Estilo do Menu */
@@ -167,6 +167,7 @@ menu{
     font-size: 2em;
     margin-bottom: 20px;
     color: white;
+    text-align: center;
 }
 
 .etapas {
@@ -237,6 +238,7 @@ menu{
 .destinos h2 {
     font-size: 36px;
     margin-bottom: 30px;
+    text-align: center;
 }
 
 .destinos-cards {
@@ -330,6 +332,7 @@ menu{
     font-size: 24px;
     margin-bottom: 10px;
     color: #007EA7;
+    text-align: center;
 }
 
 .sobre-texto p {
@@ -338,7 +341,7 @@ menu{
 }
 
 .sobre-imagem {
-    width: 350px;
+    width: 150px;
     height: auto;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -357,6 +360,7 @@ menu{
     font-size: 36px;
     margin-bottom: 20px;
     color: #1C2A48;
+    text-align: center;
 }
 
 .reservas p {
@@ -440,6 +444,7 @@ menu{
     font-size: 36px;
     color: #1C2A48;
     margin-bottom: 20px;
+    text-align: center;
 }
 
 .contato p {
@@ -545,6 +550,58 @@ div#ubafooter{
        display: inline;
        color: white;
      }
+
+/*PÁGINA MINHA CONTA*/
+
+div#minhaconta {
+    display: flex; 
+    justify-content: space-between; 
+    flex-wrap: wrap; 
+    margin: 40px;
+}
+
+div#login {
+    background-color: #5fb6d963; 
+    border-radius: 10px; 
+    padding: 30px; 
+    width: calc(45% - 20px); 
+    margin: 10px; 
+    box-sizing: border-box; 
+}
+
+@media (max-width: 600px) {
+    div#login {
+        width: 100%; 
+        margin: 10px 10px; 
+        
+    }
+    div#login>input{
+        padding: 5px;
+        width: 60vw ;
+    }
+    div#login>input#ok{
+        padding: 10px;
+        text-align: center;
+        margin: 20px;
+        width: 100px;
+    }
+}
+input#ok{
+    padding: 10px;
+    text-align: center;
+    margin: 20px;
+    width: 100px;
+}
+input{
+    padding: 5px;
+    width: 35vw ;
+}
+h2{
+    padding: 10px;
+    text-align: justify;
+    margin: 20px;
+}
+/*PÁGINA MINHA CONTA -FIM*/     
 
 /* Responsividade */
 @media (max-width: 1024px) {
