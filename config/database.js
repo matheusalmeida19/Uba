@@ -1,10 +1,11 @@
 // config/database.js
 const { Sequelize } = require('sequelize');
 
-const db = new Sequelize('uba', 'root', '22311803', {  
-  host: 'localhost',
+// Usar variáveis de ambiente para conexão com o banco
+const db = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {  
+  host: process.env.DB_HOST,
   dialect: 'mysql',
-  port: 3306,
+  port: process.env.DB_PORT || 3306,
 });
 
 module.exports = db;
