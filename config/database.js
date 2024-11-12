@@ -8,5 +8,4 @@ const db = new Sequelize('uba', 'root', '22311803', {
     port: 3306,
   });
   
-
 module.exports = db;
