@@ -3,13 +3,18 @@
   "version": "1.0.0",
   "description": "servidor uba",
   "main": "index.js",
+  "type": "module",
+  "engines": {
+    "node": "22"
+  },
   "scripts": {
-    "start": "node index.js",
+    "start": "node --watch index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Matheus Siqueira",
   "license": "ISC",
   "dependencies": {
+    "@prisma/client": "^5.22.0",
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.3",
@@ -17,6 +22,7 @@
     "express": "^4.21.1",
     "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.11.4",
+    "prisma": "^5.22.0",
     "sequelize": "^6.37.5"
   },
   "keywords": []

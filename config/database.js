@@ -1,3 +1,4 @@
+require('dotenv').config()
 const { Sequelize } = require('sequelize');
 
 // Usar as variáveis de ambiente para conexão com o banco
