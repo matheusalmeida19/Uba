@@ -6,139 +6,115 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contato | UBÁ Passagens Fluviais</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="shortcut icon" href="image/boat.png" type="image/x-icon">
 </head>
 
-<body onresize="mudouoTamanho()">
-    <header>
-        <div id="uba">
-            <span id="barco" class="material-symbols-outlined">
-                directions_boat
-            </span> <h2>Ubá</h2>
+<body class="bg-gray-100 text-gray-800 font-sans">
+
+    <!-- Header -->
+    <header class="bg-white shadow-md p-4">
+        <div class="flex justify-between items-center">
+            <div id="uba" class="flex items-center space-x-2">
+                <span id="barco" class="material-symbols-outlined text-blue-500 text-4xl">directions_boat</span>
+                <h2 class="text-xl font-bold text-blue-600">Ubá</h2>
+            </div>
+
+            <span id="burguer" class="material-symbols-outlined text-3xl cursor-pointer md:hidden" onclick="clickMenu()">menu</span>
+
+            <menu id="menu" class="md:flex hidden space-x-6">
+                <ul class="flex space-x-6">
+                    <li><a href="index.html" class="text-lg hover:text-blue-600">Home</a></li>
+                    <li><a href="sobre.html" class="text-lg hover:text-blue-600">Sobre</a></li>
+                    <li><a href="destino.html" class="text-lg hover:text-blue-600">Destinos</a></li>
+                    <li><a href="reserva.html" class="text-lg hover:text-blue-600">Reservar</a></li>
+                    <li><a href="contato.html" class="text-lg hover:text-blue-600">Contato</a></li>
+                </ul>
+                <button class="bg-blue-500 text-white py-2 px-4 rounded-full hover:bg-blue-600">Login</button>
+            </menu>
         </div>
-
-        <span id="burguer" class="material-symbols-outlined" onclick="clickMenu()"> menu</span>
-
-        <menu id="menu">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="sobre.html">Sobre</a></li>
-                <li><a href="destino.html">Destinos</a></li>
-                <li><a href="reserva.html">Reservar</a></li>
-                <li><a href="contato.html">Contato</a></li>
-            </ul>
-            <button class="login-btn">Login</button>
-        </menu>
     </header>
 
-    <main>
-        <br>
-        <h2> Venha fazer parte do Ubá!</h3>
+    <!-- Main Content -->
+    <main class="container mx-auto p-8">
+        <h2 class="text-3xl font-semibold text-center text-blue-600 mb-8">Venha fazer parte do Ubá!</h2>
 
-        <div id="minhaconta">
-            <div id="login">
-                <h2>Entrar</h2>
-                <br>
-                <hr>
-                <br>
+        <div id="minhaconta" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Login Form -->
+            <div id="login" class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-2xl font-semibold text-center text-blue-600 mb-4">Entrar</h3>
+                <hr class="mb-4">
                 <form action="/login" method="POST">
-                    Nome de usuário ou Email  * <br>
-                    <input type="text" name="email" required>
-                    <br>   
-                    <br>Senha *<br>
-                    <input type="password" name="password" required>
-                    <br>   
-                    <input id="ok" type="submit" value="Entrar">
+                    <label for="email" class="block text-lg mb-2">Nome de usuário ou Email *</label>
+                    <input type="text" name="email" class="w-full p-3 mb-4 border rounded-lg" required>
+                    
+                    <label for="password" class="block text-lg mb-2">Senha *</label>
+                    <input type="password" name="password" class="w-full p-3 mb-4 border rounded-lg" required>
+                    
+                    <input id="ok" type="submit" value="Entrar" class="w-full py-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600">
                 </form>
             </div>
-            <div id="login">
-                <h2>Cadastre-se</h2>
-                <br>
-                <hr>
-                <br>
+
+            <!-- Register Form -->
+            <div id="register" class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-2xl font-semibold text-center text-blue-600 mb-4">Cadastre-se</h3>
+                <hr class="mb-4">
                 <form action="/register" method="POST">
-                    Nome de usuário* <br>
-                    <input type="text" name="username" required>
-                    <br>Email* <br>
-                    <input type="text" name="email" required>
-                    <br>Senha *<br>
-                    <input type="password" name="password" required>
-                    <br>
-                    <input id="ok" type="submit" value="Cadastre-se">
+                    <label for="username" class="block text-lg mb-2">Nome de usuário *</label>
+                    <input type="text" name="username" class="w-full p-3 mb-4 border rounded-lg" required>
+                    
+                    <label for="email" class="block text-lg mb-2">Email *</label>
+                    <input type="text" name="email" class="w-full p-3 mb-4 border rounded-lg" required>
+                    
+                    <label for="password" class="block text-lg mb-2">Senha *</label>
+                    <input type="password" name="password" class="w-full p-3 mb-4 border rounded-lg" required>
+                    
+                    <input id="ok" type="submit" value="Cadastre-se" class="w-full py-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600">
                 </form>
             </div>
         </div>
     </main>
 
-    <footer>
-        <div id="ubafooter">
-            <span id="barco" class="material-symbols-outlined">
-                directions_boat
-            </span> <h2>Ubá</h2>
+    <!-- Footer -->
+    <footer class="bg-white p-4 shadow-lg mt-8">
+        <div id="ubafooter" class="flex items-center space-x-2">
+            <span id="barco" class="material-symbols-outlined text-blue-500 text-3xl">directions_boat</span>
+            <h2 class="text-xl font-bold text-blue-600">Ubá</h2>
         </div>
-        <div class="footer-content">
+
+        <div class="footer-content mt-4 text-center">
             <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="sobre.html">Sobre</a></li>
-                    <li><a href="destino.html">Destinos</a></li>
-                    <li><a href="contato.html">Contato</a></li>
+                <ul class="flex justify-center space-x-6">
+                    <li><a href="index.html" class="text-lg text-blue-600 hover:text-blue-800">Home</a></li>
+                    <li><a href="sobre.html" class="text-lg text-blue-600 hover:text-blue-800">Sobre</a></li>
+                    <li><a href="destino.html" class="text-lg text-blue-600 hover:text-blue-800">Destinos</a></li>
+                    <li><a href="contato.html" class="text-lg text-blue-600 hover:text-blue-800">Contato</a></li>
                 </ul>
             </nav>
         </div>
-        <br>
-        <hr>
-        <br>
-        <p>©2024 Ubá Fluvial. Todos os direitos reservados.</p>
+
+        <hr class="my-4">
+        <p class="text-center text-gray-600">©2024 Ubá Fluvial. Todos os direitos reservados.</p>
     </footer>
+
     <script>
-        function mudouoTamanho(){
-            if (window.innerWidth == 768){
+        function mudouoTamanho() {
+            if (window.innerWidth == 768) {
                 itens.style.display = 'block'
             } else {
                 itens.style.display = 'none'
             }
         }
+
         function clickMenu() {
+            const menu = document.getElementById('menu');
             if (menu.style.display == 'block') {
-                menu.style.display = 'none'
+                menu.style.display = 'none';
             } else {
-                menu.style.display = 'block'
+                menu.style.display = 'block';
             }
         }
     </script>
-
-<script>
-  document.getElementById('registerForm').addEventListener('submit', async function (event) {
-      event.preventDefault(); // Previne o envio padrão do formulário
-
-      const formData = new FormData(this);
-      const data = {
-          username: formData.get('username'),
-          email: formData.get('email'),
-          password: formData.get('password'),
-      };
-
-      try {
-          const response = await fetch('/register', {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/json',
-              },
-              body: JSON.stringify(data),
-          });
-
-          const result = await response.text();
-          document.getElementById('message').innerHTML = result;
-      } catch (error) {
-          console.error('Erro no cadastro:', error);
-          document.getElementById('message').innerHTML = '<p>Ocorreu um erro. Tente novamente.</p>';
-      }
-  });
-</script>
-
-  <script src="js/signup.js"></script>
 
 </body>
 

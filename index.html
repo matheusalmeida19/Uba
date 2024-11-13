@@ -6,151 +6,160 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ubá | Passagens Fluviais</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-  <link rel="stylesheet" href="css/style.css">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="shortcut icon" href="image/boat.png" type="image/x-icon">
 </head>
 
-<body onresize="mudouoTamanho()">
+<body class="font-sans bg-gray-900 text-white dark:bg-gray-800">
   <!-- Cabeçalho -->
-  <header>
-    <div id="uba">
-      <span id="barco" class="material-symbols-outlined">
-          directions_boat
-        </span> <h2>Ubá</h2>
+  <header class="bg-blue-800 text-white shadow-md">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <div class="flex items-center space-x-2">
+        <span class="material-symbols-outlined text-4xl">directions_boat</span>
+        <h2 class="text-3xl font-semibold">Ubá</h2>
+      </div>
+      <span id="burguer" class="material-symbols-outlined text-3xl cursor-pointer md:hidden" onclick="clickMenu()">menu</span>
+
+      <nav id="menu" class="hidden md:flex space-x-6">
+        <a href="index.html" class="text-lg hover:text-gray-400">Home</a>
+        <a href="sobre.html" class="text-lg hover:text-gray-400">Sobre</a>
+        <a href="destino.html" class="text-lg hover:text-gray-400">Destinos</a>
+        <a href="reserva.html" class="text-lg hover:text-gray-400">Reservar</a>
+        <a href="contato.html" class="text-lg hover:text-gray-400">Contato</a>
+        <button class="bg-blue-700 text-white py-2 px-4 rounded-lg hover:bg-blue-600">
+          <a href="login.html">Login</a>
+        </button>
+      </nav>
     </div>
-
-   <span id="burguer" class="material-symbols-outlined" onclick="clickMenu()"> menu</span>
-
-    <menu id="menu">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="sobre.html">Sobre</a></li>
-        <li><a href="destino.html">Destinos</a></li>
-        <li><a href="reserva.html">Reservar</a></li>
-        <li><a href="contato.html">Contato</a></li>
-      </ul>
-      <button class="login-btn"><a href="login.html">Login</a></button>
-    </menu>
   </header>
 
   <!-- Banner Principal -->
-  <section class="banner" id="home">
-    <div class="banner-content">
-      <h1>Explore o Mundo pelos Rios</h1>
-      <p>Descubra destinos incríveis em viagens fluviais únicas</p>
-      <button class="cta-btn">Explorar Destinos</button>
+  <section class="banner bg-cover bg-center text-white py-24" style="background-image: url('image/banner.jpg');">
+    <div class="container mx-auto text-center">
+      <h1 class="text-5xl font-extrabold mb-4">Explore o Mundo pelos Rios</h1>
+      <p class="text-xl mb-8">Descubra destinos incríveis em viagens fluviais únicas</p>
+      <button class="bg-blue-700 hover:bg-blue-800 text-white py-2 px-6 rounded-lg text-lg">Explorar Destinos</button>
     </div>
   </section>
 
   <!-- Destinos Populares -->
-  <section class="destinos" id="destinos">
-    <h2>Destinos Populares</h2>
-    <div class="destinos-cards">
-      <div class="card">
-        <img src="image/parintins.jpg" alt="Destino 1">
-        <h3>Parintins</h3>
-        <p>A partir de R$ 200,00</p>
-        <button><a href="reserva.html">Reservar</a></button>
-      </div>
-      <div class="card">
-        <img src="image/urucara.jpg" alt="Destino 2">
-        <h3>Urucará</h3>
-        <p>A partir de R$ 300,00</p>
-        <button><a href="reserva.html">Reservar</a></button>
-      </div>
-      <div class="card">
-        <img src="image/maues.jpg" alt="Destino 3">
-        <h3>Maués</h3>
-        <p>A partir de R$ 250,00</p>
-        <button><a href="reserva.html">Reservar</a></button>
-      </div>
-      <div class="card">
-        <img src="image/humaita.jpeg" alt="Destino 4">
-        <h3>Humaitá</h3>
-        <p>A partir de R$ 250,00</p>
-        <button><a href="reserva.html">Reservar</a></button>
-      </div>
-      <div class="card">
-        <img src="image/itacoatiara1.jpeg" alt="Destino 5">
-        <h3>Itacoatiara</h3>
-        <p>A partir de R$ 290,00</p>
-        <button><a href="reserva.html">Reservar</a></button>
-      </div>
-      <div class="card">
-        <img src="image/tefe.jpg" alt="Destino 6">
-        <h3>Tefé</h3>
-        <p>A partir de R$ 170,00</p>
-        <button><a href="reserva.html">Reservar</a></button>
+  <section class="destinos py-16 bg-gray-900">
+    <div class="container mx-auto text-center">
+      <h2 class="text-4xl font-semibold mb-12">Destinos Populares</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="card bg-gray-800 rounded-lg overflow-hidden shadow-md">
+          <img src="image/parintins.jpg" alt="Destino 1" class="w-full h-48 object-cover">
+          <div class="p-4">
+            <h3 class="text-xl font-semibold">Parintins</h3>
+            <p>A partir de R$ 200,00</p>
+            <button class="bg-blue-700 text-white py-2 px-4 mt-4 rounded-lg hover:bg-blue-600"><a href="reserva.html">Reservar</a></button>
+          </div>
+        </div>
+        <div class="card bg-gray-800 rounded-lg overflow-hidden shadow-md">
+          <img src="image/urucara.jpg" alt="Destino 2" class="w-full h-48 object-cover">
+          <div class="p-4">
+            <h3 class="text-xl font-semibold">Urucará</h3>
+            <p>A partir de R$ 300,00</p>
+            <button class="bg-blue-700 text-white py-2 px-4 mt-4 rounded-lg hover:bg-blue-600"><a href="reserva.html">Reservar</a></button>
+          </div>
+        </div>
+        <div class="card bg-gray-800 rounded-lg overflow-hidden shadow-md">
+          <img src="image/maues.jpg" alt="Destino 3" class="w-full h-48 object-cover">
+          <div class="p-4">
+            <h3 class="text-xl font-semibold">Maués</h3>
+            <p>A partir de R$ 250,00</p>
+            <button class="bg-blue-700 text-white py-2 px-4 mt-4 rounded-lg hover:bg-blue-600"><a href="reserva.html">Reservar</a></button>
+          </div>
+        </div>
+        <div class="card bg-gray-800 rounded-lg overflow-hidden shadow-md">
+          <img src="image/humaita.jpeg" alt="Destino 4" class="w-full h-48 object-cover">
+          <div class="p-4">
+            <h3 class="text-xl font-semibold">Humaitá</h3>
+            <p>A partir de R$ 250,00</p>
+            <button class="bg-blue-700 text-white py-2 px-4 mt-4 rounded-lg hover:bg-blue-600"><a href="reserva.html">Reservar</a></button>
+          </div>
+        </div>
+        <div class="card bg-gray-800 rounded-lg overflow-hidden shadow-md">
+          <img src="image/itacoatiara1.jpeg" alt="Destino 5" class="w-full h-48 object-cover">
+          <div class="p-4">
+            <h3 class="text-xl font-semibold">Itacoatiara</h3>
+            <p>A partir de R$ 290,00</p>
+            <button class="bg-blue-700 text-white py-2 px-4 mt-4 rounded-lg hover:bg-blue-600"><a href="reserva.html">Reservar</a></button>
+          </div>
+        </div>
+        <div class="card bg-gray-800 rounded-lg overflow-hidden shadow-md">
+          <img src="image/tefe.jpg" alt="Destino 6" class="w-full h-48 object-cover">
+          <div class="p-4">
+            <h3 class="text-xl font-semibold">Tefé</h3>
+            <p>A partir de R$ 170,00</p>
+            <button class="bg-blue-700 text-white py-2 px-4 mt-4 rounded-lg hover:bg-blue-600"><a href="reserva.html">Reservar</a></button>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Como Funciona -->
-  <section class="conteiner">
-    <div class="como-funciona">
-      <h2>Como Funciona</h2>
-      <div class="etapas">
-        <div class="etapa">
-          <i class="fas fa-map-marker-alt"></i>
-          <h3>Escolha seu Destino</h3>
+  <section class="bg-gray-900 py-16">
+    <div class="container mx-auto text-center">
+      <h2 class="text-4xl font-semibold mb-12">Como Funciona</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div class="etapa bg-gray-800 p-6 rounded-lg shadow-md">
+          <i class="fas fa-map-marker-alt text-4xl mb-4 text-blue-600"></i>
+          <h3 class="text-xl font-semibold mb-2">Escolha seu Destino</h3>
           <p>Encontre a rota fluvial que mais combina com você e escolha seu destino.</p>
         </div>
-        <div class="etapa">
-          <i class="fas fa-calendar-alt"></i>
-          <h3>Escolha a Data</h3>
+        <div class="etapa bg-gray-800 p-6 rounded-lg shadow-md">
+          <i class="fas fa-calendar-alt text-4xl mb-4 text-blue-600"></i>
+          <h3 class="text-xl font-semibold mb-2">Escolha a Data</h3>
           <p>Selecione a data e o horário de preferência para a sua viagem.</p>
         </div>
-        <div class="etapa">
-          <i class="fas fa-ticket-alt"></i>
-          <h3>Reserve sua Passagem</h3>
+        <div class="etapa bg-gray-800 p-6 rounded-lg shadow-md">
+          <i class="fas fa-ticket-alt text-4xl mb-4 text-blue-600"></i>
+          <h3 class="text-xl font-semibold mb-2">Reserve sua Passagem</h3>
           <p>Finalize a sua reserva em poucos cliques e prepare-se para embarcar.</p>
         </div>
       </div>
-      <div class="chamada-para-acao">
-        <a href="reserva.html" class="botao-reservar">Reserve Agora</a>
+      <div class="mt-8">
+        <a href="reserva.html" class="bg-blue-700 text-white py-3 px-8 rounded-lg hover:bg-blue-600 text-xl">Reserve Agora</a>
       </div>
     </div>
   </section>
 
-
   <!-- Rodapé -->
-  <footer>
-    <div id="ubafooter">
-      <span id="barco" class="material-symbols-outlined">
-          directions_boat
-          </span> <h2>Ubá</h2>
-  </div>
-    <div class="footer-content">
+  <footer class="bg-blue-800 text-white py-6 mt-16">
+    <div class="container mx-auto text-center">
+      <div class="mb-4">
+        <span class="material-symbols-outlined text-3xl">directions_boat</span>
+        <h2 class="text-2xl font-semibold">Ubá</h2>
+      </div>
       <nav>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="sobre.html">Sobre</a></li>
-          <li><a href="destino.html">Destinos</a></li>
-          <li><a href="contato.html">Contato</a></li>
+        <ul class="flex justify-center space-x-6 mb-4">
+          <li><a href="index.html" class="hover:text-gray-200">Home</a></li>
+          <li><a href="sobre.html" class="hover:text-gray-200">Sobre</a></li>
+          <li><a href="destino.html" class="hover:text-gray-200">Destinos</a></li>
+          <li><a href="contato.html" class="hover:text-gray-200">Contato</a></li>
         </ul>
       </nav>
+      <hr class="border-gray-300 mb-4">
+      <p>©2024 Ubá Fluvial. Todos os direitos reservados.</p>
     </div>
-    <br>
-    <hr>
-    <br>
-    <p>©2024 Ubá Fluvial. Todos os direitos reservados.</p>
+  </footer>
+
   <script>
-    function mudouoTamanho(){
-        if (window.innerWidth == 768){
-            itens.style.display = 'block'
-        } else {
-            itens.style.display = 'none'
-        }
-    }
-    function clickMenu() {
-      if (menu.style.display == 'block') {
-          menu.style.display = 'none'
-      } 
-      else {
-          menu.style.display = 'block'
+    function mudouoTamanho() {
+      if (window.innerWidth <= 768) {
+        document.getElementById('menu').style.display = 'none';
+      } else {
+        document.getElementById('menu').style.display = 'flex';
       }
     }
-</script>
+
+    function clickMenu() {
+      const menu = document.getElementById('menu');
+      menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    }
+  </script>
 </body>
 
 </html>
