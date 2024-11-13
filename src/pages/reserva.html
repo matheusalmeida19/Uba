@@ -5,33 +5,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reservar | UBÁ Passagens Fluviais</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="shortcut icon" href="image/boat.png" type="image/x-icon">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="../image/boat.png" type="../image/x-icon">
 
 </head>
 
 <body onresize="mudouoTamanho()">
     <header>
         <div id="uba">
-          <span id="barco" class="material-symbols-outlined">
-              directions_boat
-            </span> <h2>Ubá</h2>
+            <span id="barco" class="material-symbols-outlined">
+                directions_boat
+            </span>
+            <h2>Ubá</h2>
         </div>
-    
-       <span id="burguer" class="material-symbols-outlined" onclick="clickMenu()"> menu</span>
-    
+
+        <span id="burguer" class="material-symbols-outlined" onclick="clickMenu()"> menu</span>
+
         <menu id="menu">
-          <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="sobre.html">Sobre</a></li>
-            <li><a href="destino.html">Destinos</a></li>
-            <li><a href="reserva.html">Reservar</a></li>
-            <li><a href="contato.html">Contato</a></li>
-          </ul>
-          <button class="login-btn"><a href="login.html">Login</a></button>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="sobre.html">Sobre</a></li>
+                <li><a href="destino.html">Destinos</a></li>
+                <li><a href="reserva.html">Reservar</a></li>
+                <li><a href="contato.html">Contato</a></li>
+            </ul>
+            <button class="login-btn"><a href="login.html">Login</a></button>
         </menu>
-      </header>
+    </header>
 
     <section class="reservas" id="reservar">
         <h2>Reservas</h2>
@@ -92,22 +94,23 @@
         <div id="ubafooter">
             <span id="barco" class="material-symbols-outlined">
                 directions_boat
-                </span> <h2>Ubá</h2>
+            </span>
+            <h2>Ubá</h2>
         </div>
-          <div class="footer-content">
+        <div class="footer-content">
             <nav>
-              <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="sobre.html">Sobre</a></li>
-                <li><a href="destino.html">Destinos</a></li>
-                <li><a href="contato.html">Contato</a></li>
-              </ul>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="sobre.html">Sobre</a></li>
+                    <li><a href="destino.html">Destinos</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
             </nav>
-          </div>
-          <br>
-          <hr>
-          <br>
-          <p>©2024 Ubá Fluvial. Todos os direitos reservados.</p>
+        </div>
+        <br>
+        <hr>
+        <br>
+        <p>©2024 Ubá Fluvial. Todos os direitos reservados.</p>
     </footer>
 
     <script>
@@ -158,20 +161,20 @@
         }
     </script>
     <script>
-        function mudouoTamanho(){
-            if (window.innerWidth == 768){
+        function mudouoTamanho() {
+            if (window.innerWidth == 768) {
                 itens.style.display = 'block'
             } else {
                 itens.style.display = 'none'
             }
         }
         function clickMenu() {
-          if (menu.style.display == 'block') {
-              menu.style.display = 'none'
-          } 
-          else {
-              menu.style.display = 'block'
-          }
+            if (menu.style.display == 'block') {
+                menu.style.display = 'none'
+            }
+            else {
+                menu.style.display = 'block'
+            }
         }
     </script>
 </body>

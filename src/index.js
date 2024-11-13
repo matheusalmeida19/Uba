@@ -2,22 +2,25 @@ import dotenv from 'dotenv'; // Carregar as variáveis de ambiente do arquivo .e
 import express from 'express';
 import path from 'path';
 import bodyParser from 'body-parser';
-import { registerUser } from './src/controllers/userController.js';
+import { registerUser } from './controllers/userController.js';
+import { prisma } from './prisma.js';
 
 dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 8000;
 
+// Middleware para processar o corpo das requisições
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use(express.static(path.join(path.resolve(), '.')));
-app.use(express.urlencoded({ extended: true }));
+// Definir o diretório estático para os arquivos HTML e imagens
+app.use(express.static(path.join(path.resolve(), 'src/pages')));
+app.use('/image', express.static(path.join(path.resolve(), 'src/image')));
 
-// Rota principal
+// Rota principal para servir o arquivo index.html
 app.get('/', (req, res) => {
-  res.sendFile(path.join(path.resolve(), 'index.html'));
+  res.sendFile(path.join(path.resolve(), 'src/pages/index.html'));
 });
 
 // Rotas para registro e solicitação

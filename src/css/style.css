@@ -123,7 +123,7 @@ menu{
 
 /* Estilos do banner */
 .banner {
-    background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url('../image/portodemanaus.jpg');
+    background-../image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url('../../image/portodemanaus.jpg');
     background-size: cover;
     background-position: center;
     color: white;
@@ -340,7 +340,7 @@ menu{
     color: #666;
 }
 
-.sobre-imagem {
+.sobre-../imagem {
     width: 150px;
     height: auto;
     border-radius: 10px;

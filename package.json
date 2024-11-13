@@ -8,7 +8,7 @@
     "node": "22"
   },
   "scripts": {
-    "start": "node --watch index.js",
+    "start": "node src/index.js --watch index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Matheus Siqueira",
