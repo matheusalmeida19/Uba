@@ -1,12 +1,23 @@
 const express = require('express');
 const path = require('path');
-const db = require('./config/database');  
+const { Sequelize } = require('sequelize');  
 const User = require('./models/user.js');
 const userController = require('./controllers/userController');
 const bodyParser = require('body-parser');   
 
+require('dotenv').config();  // Carregar as variáveis de ambiente do arquivo .env
+
 const app = express();
 const port = process.env.PORT || 8000;
+
+const db = new Sequelize({
+  host: process.env.MYSQL_HOST,
+  username: process.env.MYSQL_USER,
+  password: process.env.MYSQL_PASSWORD,
+  database: process.env.MYSQL_DATABASE,
+  port: process.env.MYSQL_PORT,
+  dialect: 'mysql',
+});
 
 // Middleware para processar o corpo das requisições
 app.use(bodyParser.urlencoded({ extended: true }));
