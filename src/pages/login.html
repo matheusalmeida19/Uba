@@ -4,27 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contato | UBÁ Passagens Fluviais</title>
+    <title>Login ou Cadastro | UBÁ Passagens Fluviais</title>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="shortcut icon" href="../image/boat.png" type="../image/x-icon">
+    <link rel="shortcut icon" href="/image/boat.png" type="image/x-icon">
 </head>
 
 <body class="bg-gray-100 text-gray-800 font-sans">
 
     <!-- Header -->
     <header class="bg-white shadow-md p-4">
-        <div class="flex justify-between items-center">
-            <div id="uba" class="flex items-center space-x-2">
-                <span id="barco" class="material-symbols-outlined text-blue-500 text-4xl">directions_boat</span>
+        <div class="flex justify-between items-center container mx-auto">
+            <div class="flex items-center space-x-2">
+                <span class="material-symbols-outlined text-blue-500 text-4xl">directions_boat</span>
                 <h2 class="text-xl font-bold text-blue-600">Ubá</h2>
             </div>
 
             <span id="burguer" class="material-symbols-outlined text-3xl cursor-pointer md:hidden"
-                onclick="clickMenu()">menu</span>
+                onclick="toggleMenu()">menu</span>
 
-            <menu id="menu" class="md:flex hidden space-x-6">
+            <nav id="menu" class="md:flex hidden space-x-6">
                 <ul class="flex space-x-6">
                     <li><a href="index.html" class="text-lg hover:text-blue-600">Home</a></li>
                     <li><a href="sobre.html" class="text-lg hover:text-blue-600">Sobre</a></li>
@@ -33,91 +33,182 @@
                     <li><a href="contato.html" class="text-lg hover:text-blue-600">Contato</a></li>
                 </ul>
                 <button class="bg-blue-500 text-white py-2 px-4 rounded-full hover:bg-blue-600">Login</button>
-            </menu>
+            </nav>
         </div>
     </header>
 
     <!-- Main Content -->
     <main class="container mx-auto p-8">
-        <h2 class="text-3xl font-semibold text-center text-blue-600 mb-8">Venha fazer parte do Ubá!</h2>
+        <h2 id="formTitle" class="text-3xl font-semibold text-center text-blue-600 mb-8">Bem-vindo ao Ubá - Faça Login</h2>
 
-        <div id="minhaconta" class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <!-- Login Form -->
-            <div id="login" class="bg-white p-6 rounded-lg shadow-lg">
-                <h3 class="text-2xl font-semibold text-center text-blue-600 mb-4">Entrar</h3>
+        <div class="flex justify-center">
+            <!-- Formulário de Login/Cadastro -->
+            <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+                <h3 id="formHeading" class="text-2xl font-semibold text-center text-blue-600 mb-4">Entrar</h3>
                 <hr class="mb-4">
-                <form action="/login" method="POST">
+                
+                <!-- Formulário de Login -->
+                <form id="loginForm" style="display: none;">
                     <label for="email" class="block text-lg mb-2">Nome de usuário ou Email *</label>
-                    <input type="text" name="email" class="w-full p-3 mb-4 border rounded-lg" required>
+                    <input type="text" name="email" id="email" class="w-full p-3 mb-4 border rounded-lg" required>
 
                     <label for="password" class="block text-lg mb-2">Senha *</label>
-                    <input type="password" name="password" class="w-full p-3 mb-4 border rounded-lg" required>
+                    <input type="password" name="password" id="password" class="w-full p-3 mb-4 border rounded-lg" required>
 
-                    <input id="ok" type="submit" value="Entrar"
-                        class="w-full py-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600">
+                    <button type="button" onclick="login()" class="w-full py-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600">
+                        Entrar
+                    </button>
                 </form>
-            </div>
 
-            <!-- Register Form -->
-            <div id="register" class="bg-white p-6 rounded-lg shadow-lg">
-                <h3 class="text-2xl font-semibold text-center text-blue-600 mb-4">Cadastre-se</h3>
-                <hr class="mb-4">
-                <form action="/register" method="POST">
+                <!-- Formulário de Cadastro -->
+                <form id="registerForm" style="display: none;">
                     <label for="username" class="block text-lg mb-2">Nome de usuário *</label>
-                    <input type="text" name="username" class="w-full p-3 mb-4 border rounded-lg" required>
+                    <input type="text" name="username" id="username" class="w-full p-3 mb-4 border rounded-lg" required>
 
                     <label for="email" class="block text-lg mb-2">Email *</label>
-                    <input type="text" name="email" class="w-full p-3 mb-4 border rounded-lg" required>
+                    <input type="email" name="email" id="registerEmail" class="w-full p-3 mb-4 border rounded-lg" required>
 
                     <label for="password" class="block text-lg mb-2">Senha *</label>
-                    <input type="password" name="password" class="w-full p-3 mb-4 border rounded-lg" required>
+                    <input type="password" name="password" id="registerPassword" class="w-full p-3 mb-4 border rounded-lg" required>
 
-                    <input id="ok" type="submit" value="Cadastre-se"
-                        class="w-full py-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600">
+                    <button type="button" onclick="register()" class="w-full py-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600">
+                        Cadastre-se
+                    </button>
                 </form>
+
+                <p id="loginMessage" class="text-center mt-4"></p>
+                <button onclick="toggleForm()" class="mt-4 text-center w-full text-blue-600 hover:underline">
+                    Já possui uma conta? Faça Login
+                </button>
             </div>
         </div>
     </main>
 
     <!-- Footer -->
     <footer class="bg-white p-4 shadow-lg mt-8">
-        <div id="ubafooter" class="flex items-center space-x-2">
-            <span id="barco" class="material-symbols-outlined text-blue-500 text-3xl">directions_boat</span>
-            <h2 class="text-xl font-bold text-blue-600">Ubá</h2>
-        </div>
-
-        <div class="footer-content mt-4 text-center">
+        <div class="container mx-auto text-center">
+            <div class="flex justify-center items-center space-x-2 mb-4">
+                <span class="material-symbols-outlined text-blue-500 text-3xl">directions_boat</span>
+                <h2 class="text-xl font-bold text-blue-600">Ubá</h2>
+            </div>
             <nav>
-                <ul class="flex justify-center space-x-6">
+                <ul class="flex justify-center space-x-6 mb-4">
                     <li><a href="index.html" class="text-lg text-blue-600 hover:text-blue-800">Home</a></li>
                     <li><a href="sobre.html" class="text-lg text-blue-600 hover:text-blue-800">Sobre</a></li>
                     <li><a href="destino.html" class="text-lg text-blue-600 hover:text-blue-800">Destinos</a></li>
                     <li><a href="contato.html" class="text-lg text-blue-600 hover:text-blue-800">Contato</a></li>
                 </ul>
             </nav>
+            <hr class="my-4">
+            <p class="text-center text-gray-600">©2024 Ubá Fluvial. Todos os direitos reservados.</p>
         </div>
-
-        <hr class="my-4">
-        <p class="text-center text-gray-600">©2024 Ubá Fluvial. Todos os direitos reservados.</p>
     </footer>
 
+    <!-- JavaScript -->
     <script>
-        function mudouoTamanho() {
-            if (window.innerWidth == 768) {
-                itens.style.display = 'block'
+        let isLogin = true;
+
+        // Função para alternar entre o formulário de Login e Cadastro
+        function toggleForm() {
+            isLogin = !isLogin;
+
+            const loginForm = document.getElementById("loginForm");
+            const registerForm = document.getElementById("registerForm");
+            const formHeading = document.getElementById("formHeading");
+            const formTitle = document.getElementById("formTitle");
+            const toggleButton = document.querySelector("button[onclick='toggleForm()']");
+
+            if (isLogin) {
+                loginForm.style.display = "block";
+                registerForm.style.display = "none";
+                formHeading.textContent = "Entrar";
+                formTitle.textContent = "Bem-vindo ao Ubá - Faça Login";
+                toggleButton.textContent = "Não possui uma conta? Cadastre-se";
             } else {
-                itens.style.display = 'none'
+                loginForm.style.display = "none";
+                registerForm.style.display = "block";
+                formHeading.textContent = "Cadastre-se";
+                formTitle.textContent = "Crie sua Conta no Ubá";
+                toggleButton.textContent = "Já possui uma conta? Faça Login";
             }
         }
 
-        function clickMenu() {
-            const menu = document.getElementById('menu');
-            if (menu.style.display == 'block') {
-                menu.style.display = 'none';
-            } else {
-                menu.style.display = 'block';
+        // Exibe o formulário de Login por padrão
+        window.addEventListener("load", toggleForm);
+
+        // Função para fazer login
+        async function login() {
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const message = document.getElementById("loginMessage");
+
+            try {
+                const response = await fetch('/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await response.text();
+
+                if (response.ok) {
+                    message.textContent = "Login realizado com sucesso!";
+                    message.classList.remove("text-red-500");
+                    message.classList.add("text-green-500");
+                } else {
+                    message.textContent = data;
+                    message.classList.add("text-red-500");
+                }
+            } catch (error) {
+                console.error("Erro ao fazer login:", error);
+                message.textContent = "Erro ao fazer login. Tente novamente.";
             }
         }
+
+        // Função para fazer cadastro
+        async function register() {
+            const username = document.getElementById("username").value;
+            const email = document.getElementById("registerEmail").value;
+            const password = document.getElementById("registerPassword").value;
+            const message = document.getElementById("loginMessage");
+
+            try {
+                const response = await fetch('/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, email, password })
+                });
+
+                const data = await response.text();
+
+                if (response.ok) {
+                    message.textContent = "Cadastro realizado com sucesso! Faça login.";
+                    message.classList.remove("text-red-500");
+                    message.classList.add("text-green-500");
+                    toggleForm();
+                } else {
+                    message.textContent = data;
+                    message.classList.add("text-red-500");
+                }
+            } catch (error) {
+                console.error("Erro ao fazer cadastro:", error);
+                message.textContent = "Erro ao fazer cadastro. Tente novamente.";
+            }
+        }
+
+        function toggleMenu() {
+            const menu = document.getElementById("menu");
+            menu.classList.toggle("hidden");
+        }
+
+        window.addEventListener("resize", () => {
+            const menu = document.getElementById("menu");
+            if (window.innerWidth >= 768) {
+                menu.classList.remove("hidden");
+            } else {
+                menu.classList.add("hidden");
+            }
+        });
     </script>
 
 </body>

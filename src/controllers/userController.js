@@ -1,6 +1,6 @@
 // controllers/userController.js
 import bcrypt from 'bcryptjs';
-import { prisma }from '../prisma.js'; // Importando o Prisma Client
+import { prisma } from '../prisma.js'; // Importando o Prisma Client
 
 // Função de registro do usuário
 export const registerUser = async (req, res) => {
@@ -33,5 +33,36 @@ export const registerUser = async (req, res) => {
   } catch (error) {
     console.error('Erro ao registrar usuário:', error);
     res.status(500).send('<h2>Erro ao registrar o usuário. Tente novamente.</h2>');
+  }
+};
+
+// Função de login do usuário
+export const loginUser = async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    // Verifica se o usuário existe no banco de dados
+    const user = await prisma.user.findUnique({
+      where: { email },
+    });
+
+    if (!user) {
+      return res.status(400).send('<h2>Usuário não encontrado!</h2>');
+    }
+
+    // Verifica se a senha está correta
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
+      return res.status(400).send('<h2>Senha incorreta!</h2>');
+    }
+
+    // Login bem-sucedido
+    res.status(200).send(`
+      <h2>Login realizado com sucesso!</h2>
+      <p>Bem-vindo, ${user.username}!</p>
+    `);
+  } catch (error) {
+    console.error('Erro ao fazer login:', error);
+    res.status(500).send('<h2>Erro ao fazer login. Tente novamente.</h2>');
   }
 };

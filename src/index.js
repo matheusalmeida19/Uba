@@ -2,7 +2,7 @@ import dotenv from 'dotenv'; // Carregar as variáveis de ambiente do arquivo .e
 import express from 'express';
 import path from 'path';
 import bodyParser from 'body-parser';
-import { registerUser } from './controllers/userController.js';
+import { registerUser, loginUser } from './controllers/userController.js';
 import { prisma } from './prisma.js';
 
 dotenv.config();
@@ -23,15 +23,19 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(path.resolve(), 'src/pages/index.html'));
 });
 
-// Rotas para registro e solicitação
+// Rota para registro de usuário
 app.post('/register', registerUser);
 
+// Rota para login de usuário
+app.post('/login', loginUser);
+
+// Rota para criação de solicitação
 app.post('/solicitar', async (req, res) => {
   const { local, destino } = req.body;
 
   try {
     await prisma.solicitacao.create({ data: { local, destino } });
-    res.send(`<h2>Solicitação Recebida e salva! Obrigado.</h2>`);
+    res.send('<h2>Solicitação Recebida e salva! Obrigado.</h2>');
   } catch (error) {
     console.error('Erro ao salvar no banco:', error);
     res.status(500).send('<h2>Erro ao processar a solicitação.</h2>');
