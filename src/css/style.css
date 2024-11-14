@@ -13,14 +13,71 @@ body {
     background-color: #f5f5f5;
 }
 
-ul{
-    list-style-type: none;
-    
+/* Estilos para o menu responsivo */
+#menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
-a{
-    text-decoration: none;
+
+#menu ul li {
+    text-align: center;
+}
+
+#menu ul li a {
+    display: block;
+    padding: 10px 20px;
     color: white;
+    transition: background-color 0.3s;
 }
+
+#menu ul li a:hover {
+    background-color: #2685bf;
+}
+
+/* Ocultar menu em dispositivos menores */
+@media (max-width: 768px) {
+    #menu {
+        position: absolute;
+        top: 70px;
+        right: 0;
+        background-color: #01688a;
+        width: 100%;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    #menu.hidden {
+        display: none;
+    }
+
+    #menu ul {
+        flex-direction: column;
+    }
+
+    #burguer {
+        display: block;
+    }
+}
+
+/* Mostrar menu horizontal em telas maiores */
+@media (min-width: 768px) {
+    #menu {
+        display: flex !important;
+        position: static;
+        background-color: transparent;
+        box-shadow: none;
+    }
+
+    #burguer {
+        display: none;
+    }
+
+    #menu ul {
+        flex-direction: row;
+        align-items: center;
+    }
+}
+
 /* Estilos globais */
 * {
     margin: 0;
@@ -78,46 +135,67 @@ header nav ul li a,
     margin: auto;
 }
           
-menu{
-    display: none;       
-   }
-   menu>ul{
-       list-style-type: none;
-       text-align: right;
-   }
-   menu>ul>li>a{
-       display: block;
-       padding: 5px 15px;
-       margin: 10px;
-       text-decoration: none;
-       border: 1px solid white;
-       text-align: center;
-       color: white;
-   }
-   menu>ul>li>a:hover{
-       background-color: #2685bf}
+/* Ajuste para o menu responsivo */
+#menu {
+    position: absolute;
+    top: 70px; /* Ajuste dependendo da altura do cabeçalho */
+    right: 0;
+    background-color: #01688a;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: none; /* Oculta inicialmente em dispositivos móveis */
+}
 
-   span#burguer{
-        background-color: #01688a;
-        display: block;
-        text-align: left;
-        padding: 10px;
-        cursor: pointer;
+#menu ul {
+    padding: 0;
+    margin: 0;
+    flex-direction: column;
+}
+
+#menu ul li {
+    text-align: center;
+    padding: 10px;
+}
+
+#menu ul li a {
+    display: block;
+    padding: 10px 20px;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+#menu ul li a:hover {
+    background-color: #2685bf;
+}
+
+/* Mostrar menu horizontal em telas maiores */
+@media (min-width: 768px) {
+    #menu {
+        display: flex !important;
+        position: static;
+        background-color: transparent;
+        box-shadow: none;
     }
-    span#burguer:hover{
-        background-color: #2685bf;
+
+    #menu ul {
+        flex-direction: row;
+        align-items: center;
     }
-   @media screen and (min-width:768px) {
-    span#burguer{
+
+    #burguer {
         display: none;
     }
-    menu{
-        display: block;
-    }
-    menu>ul>li{
-        display: inline-block;
-    }
-   } 
+}
+
+#burguer {
+    display: block;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
 
 
 

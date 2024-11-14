@@ -15,9 +15,11 @@
   <!-- Cabeçalho -->
   <header class="bg-blue-800 text-white shadow-md">
     <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-      <div class="flex items-center space-x-2">
-        <span class="material-symbols-outlined text-4xl">directions_boat</span>
-        <h2 class="text-3xl font-semibold">Ubá</h2>
+      <div id="uba" class="flex items-center space-x-2">
+        <a href="index.html" class="flex items-center space-x-2"> 
+          <span class="material-symbols-outlined text-4xl">directions_boat</span>
+          <h2 class="text-3xl font-semibold">Ubá</h2>
+        </a>
       </div>
       <span id="burguer" class="material-symbols-outlined text-3xl cursor-pointer md:hidden" onclick="clickMenu()">menu</span>
 
@@ -167,6 +169,8 @@
     window.addEventListener("resize", mudouoTamanho);
     window.addEventListener("load", mudouoTamanho);
   </script>
+
+<script src="menu.js"></script>
 </body>
 
 </html>
