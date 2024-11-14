@@ -7,42 +7,39 @@
   <title>Sobre Nós | UBÁ Passagens Fluviais</title>
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-  <link rel="stylesheet" href="/css/style.css">
-
-    <!-- tailwind css cdn -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="shortcut icon" href="/image/boat.png" type="image/x-icon">
 </head>
 
-<body onresize="mudouoTamanho()" class="font-sans bg-gray-100 text-gray-800">
+<body class="font-sans bg-gray-900 text-white dark:bg-gray-800">
   <!-- Cabeçalho -->
-  <header class="bg-blue-800 text-white shadow-md py-4">
-    <div class="container mx-auto flex justify-between items-center px-6">
+  <header class="bg-blue-800 text-white shadow-md">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
       <div id="uba" class="flex items-center space-x-2">
-        <span class="material-symbols-outlined text-3xl">directions_boat</span>
-        <h2 class="text-xl font-semibold">Ubá</h2>
+        <span class="material-symbols-outlined text-4xl">directions_boat</span>
+        <h2 class="text-3xl font-semibold">Ubá</h2>
       </div>
       <span id="burguer" class="material-symbols-outlined text-3xl cursor-pointer md:hidden" onclick="toggleMenu()">menu</span>
       <nav id="menu" class="hidden md:flex space-x-6">
-        <a href="index.html" class="hover:text-gray-400">Home</a>
-        <a href="sobre.html" class="hover:text-gray-400">Sobre</a>
-        <a href="destino.html" class="hover:text-gray-400">Destinos</a>
-        <a href="reserva.html" class="hover:text-gray-400">Reservar</a>
-        <a href="contato.html" class="hover:text-gray-400">Contato</a>
+        <a href="index.html" class="text-lg hover:text-gray-400">Home</a>
+        <a href="sobre.html" class="text-lg hover:text-gray-400">Sobre</a>
+        <a href="destino.html" class="text-lg hover:text-gray-400">Destinos</a>
+        <a href="reserva.html" class="text-lg hover:text-gray-400">Reservar</a>
+        <a href="contato.html" class="text-lg hover:text-gray-400">Contato</a>
         <button class="bg-blue-700 text-white py-2 px-4 rounded-lg hover:bg-blue-600">
           <a href="login.html">Login</a>
         </button>
       </nav>
     </div>
-  </header>
+  </header>  
 
   <!-- Seção Sobre Nós -->
-  <section class="sobre py-16 bg-gray-100">
+  <section class="sobre py-16">
     <div class="container mx-auto text-center">
-      <h1 class="text-4xl font-bold mb-12 text-blue-800">Sobre Nós</h1>
+      <h1 class="text-4xl font-bold mb-12 text-blue-500">Sobre Nós</h1>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <!-- Nossa Missão -->
-        <div class="sobre-item bg-white rounded-lg shadow-md overflow-hidden">
+        <div class="sobre-item bg-gray-800 rounded-lg shadow-md overflow-hidden">
           <img src="/image/missao.jpg" alt="Nossa Missão" class="w-full h-48 object-cover">
           <div class="p-6">
             <h2 class="text-2xl font-semibold mb-2">Nossa Missão</h2>
@@ -53,7 +50,7 @@
         </div>
 
         <!-- Visão -->
-        <div class="sobre-item bg-white rounded-lg shadow-md overflow-hidden">
+        <div class="sobre-item bg-gray-800 rounded-lg shadow-md overflow-hidden">
           <img src="/image/visao.jpg" alt="Visão" class="w-full h-48 object-cover">
           <div class="p-6">
             <h2 class="text-2xl font-semibold mb-2">Visão</h2>
@@ -63,7 +60,7 @@
         </div>
 
         <!-- Valores -->
-        <div class="sobre-item bg-white rounded-lg shadow-md overflow-hidden">
+        <div class="sobre-item bg-gray-800 rounded-lg shadow-md overflow-hidden">
           <img src="/image/valores.jpg" alt="Valores" class="w-full h-48 object-cover">
           <div class="p-6">
             <h2 class="text-2xl font-semibold mb-2">Valores</h2>
@@ -112,7 +109,6 @@
       menu.classList.toggle('hidden');
     }
 
-    // Inicializar o estado do menu
     window.addEventListener('resize', mudouoTamanho);
     window.addEventListener('load', mudouoTamanho);
   </script>

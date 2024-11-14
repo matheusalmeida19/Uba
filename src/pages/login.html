@@ -11,49 +11,43 @@
     <link rel="shortcut icon" href="/image/boat.png" type="image/x-icon">
 </head>
 
-<body class="bg-gray-100 text-gray-800 font-sans">
-
+<body class="bg-gray-900 text-white font-sans">
     <!-- Header -->
-    <header class="bg-white shadow-md p-4">
-        <div class="flex justify-between items-center container mx-auto">
+    <header class="bg-blue-800 text-white shadow-md py-4">
+        <div class="container mx-auto flex justify-between items-center px-6">
             <div class="flex items-center space-x-2">
-                <span class="material-symbols-outlined text-blue-500 text-4xl">directions_boat</span>
-                <h2 class="text-xl font-bold text-blue-600">Ubá</h2>
+                <span class="material-symbols-outlined text-4xl">directions_boat</span>
+                <h2 class="text-3xl font-semibold">Ubá</h2>
             </div>
+            <span id="burguer" class="material-symbols-outlined text-3xl cursor-pointer md:hidden" onclick="toggleMenu()">menu</span>
 
-            <span id="burguer" class="material-symbols-outlined text-3xl cursor-pointer md:hidden"
-                onclick="toggleMenu()">menu</span>
-
-            <nav id="menu" class="md:flex hidden space-x-6">
-                <ul class="flex space-x-6">
-                    <li><a href="index.html" class="text-lg hover:text-blue-600">Home</a></li>
-                    <li><a href="sobre.html" class="text-lg hover:text-blue-600">Sobre</a></li>
-                    <li><a href="destino.html" class="text-lg hover:text-blue-600">Destinos</a></li>
-                    <li><a href="reserva.html" class="text-lg hover:text-blue-600">Reservar</a></li>
-                    <li><a href="contato.html" class="text-lg hover:text-blue-600">Contato</a></li>
-                </ul>
-                <button class="bg-blue-500 text-white py-2 px-4 rounded-full hover:bg-blue-600">Login</button>
+            <nav id="menu" class="hidden md:flex space-x-6">
+                <a href="index.html" class="text-lg hover:text-gray-400">Home</a>
+                <a href="sobre.html" class="text-lg hover:text-gray-400">Sobre</a>
+                <a href="destino.html" class="text-lg hover:text-gray-400">Destinos</a>
+                <a href="reserva.html" class="text-lg hover:text-gray-400">Reservar</a>
+                <a href="contato.html" class="text-lg hover:text-gray-400">Contato</a>
             </nav>
         </div>
     </header>
 
     <!-- Main Content -->
     <main class="container mx-auto p-8">
-        <h2 id="formTitle" class="text-3xl font-semibold text-center text-blue-600 mb-8">Bem-vindo ao Ubá - Faça Login</h2>
+        <h2 id="formTitle" class="text-3xl font-semibold text-center text-blue-400 mb-8">Bem-vindo ao Ubá - Faça Login</h2>
 
         <div class="flex justify-center">
             <!-- Formulário de Login/Cadastro -->
-            <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
-                <h3 id="formHeading" class="text-2xl font-semibold text-center text-blue-600 mb-4">Entrar</h3>
-                <hr class="mb-4">
+            <div class="bg-gray-800 p-6 rounded-lg shadow-lg w-full max-w-md">
+                <h3 id="formHeading" class="text-2xl font-semibold text-center text-blue-400 mb-4">Entrar</h3>
+                <hr class="border-gray-600 mb-4">
                 
                 <!-- Formulário de Login -->
                 <form id="loginForm" style="display: none;">
                     <label for="email" class="block text-lg mb-2">Nome de usuário ou Email *</label>
-                    <input type="text" name="email" id="email" class="w-full p-3 mb-4 border rounded-lg" required>
+                    <input type="text" name="email" id="email" class="w-full p-3 mb-4 border border-gray-600 rounded-lg bg-gray-700 text-white" required>
 
                     <label for="password" class="block text-lg mb-2">Senha *</label>
-                    <input type="password" name="password" id="password" class="w-full p-3 mb-4 border rounded-lg" required>
+                    <input type="password" name="password" id="password" class="w-full p-3 mb-4 border border-gray-600 rounded-lg bg-gray-700 text-white" required>
 
                     <button type="button" onclick="login()" class="w-full py-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600">
                         Entrar
@@ -63,13 +57,13 @@
                 <!-- Formulário de Cadastro -->
                 <form id="registerForm" style="display: none;">
                     <label for="username" class="block text-lg mb-2">Nome de usuário *</label>
-                    <input type="text" name="username" id="username" class="w-full p-3 mb-4 border rounded-lg" required>
+                    <input type="text" name="username" id="username" class="w-full p-3 mb-4 border border-gray-600 rounded-lg bg-gray-700 text-white" required>
 
                     <label for="email" class="block text-lg mb-2">Email *</label>
-                    <input type="email" name="email" id="registerEmail" class="w-full p-3 mb-4 border rounded-lg" required>
+                    <input type="email" name="email" id="registerEmail" class="w-full p-3 mb-4 border border-gray-600 rounded-lg bg-gray-700 text-white" required>
 
                     <label for="password" class="block text-lg mb-2">Senha *</label>
-                    <input type="password" name="password" id="registerPassword" class="w-full p-3 mb-4 border rounded-lg" required>
+                    <input type="password" name="password" id="registerPassword" class="w-full p-3 mb-4 border border-gray-600 rounded-lg bg-gray-700 text-white" required>
 
                     <button type="button" onclick="register()" class="w-full py-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600">
                         Cadastre-se
@@ -77,7 +71,7 @@
                 </form>
 
                 <p id="loginMessage" class="text-center mt-4"></p>
-                <button onclick="toggleForm()" class="mt-4 text-center w-full text-blue-600 hover:underline">
+                <button onclick="toggleForm()" class="mt-4 text-center w-full text-blue-400 hover:underline">
                     Já possui uma conta? Faça Login
                 </button>
             </div>
@@ -85,33 +79,32 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-white p-4 shadow-lg mt-8">
+    <footer class="bg-blue-800 text-white py-6 mt-16">
         <div class="container mx-auto text-center">
-            <div class="flex justify-center items-center space-x-2 mb-4">
-                <span class="material-symbols-outlined text-blue-500 text-3xl">directions_boat</span>
-                <h2 class="text-xl font-bold text-blue-600">Ubá</h2>
-            </div>
-            <nav>
-                <ul class="flex justify-center space-x-6 mb-4">
-                    <li><a href="index.html" class="text-lg text-blue-600 hover:text-blue-800">Home</a></li>
-                    <li><a href="sobre.html" class="text-lg text-blue-600 hover:text-blue-800">Sobre</a></li>
-                    <li><a href="destino.html" class="text-lg text-blue-600 hover:text-blue-800">Destinos</a></li>
-                    <li><a href="contato.html" class="text-lg text-blue-600 hover:text-blue-800">Contato</a></li>
-                </ul>
-            </nav>
-            <hr class="my-4">
-            <p class="text-center text-gray-600">©2024 Ubá Fluvial. Todos os direitos reservados.</p>
+          <div class="flex justify-center items-center space-x-2 mb-4">
+            <span class="material-symbols-outlined text-3xl">directions_boat</span>
+            <h2 class="text-xl font-semibold">Ubá</h2>
+          </div>
+          <nav>
+            <ul class="flex justify-center space-x-6 mb-4">
+              <li><a href="index.html" class="hover:text-gray-200">Home</a></li>
+              <li><a href="sobre.html" class="hover:text-gray-200">Sobre</a></li>
+              <li><a href="destino.html" class="hover:text-gray-200">Destinos</a></li>
+              <li><a href="contato.html" class="hover:text-gray-200">Contato</a></li>
+            </ul>
+          </nav>
+          <hr class="border-gray-300 mb-4">
+          <p>©2024 Ubá Fluvial. Todos os direitos reservados.</p>
         </div>
-    </footer>
+      </footer>
+    
 
     <!-- JavaScript -->
     <script>
         let isLogin = true;
 
-        // Função para alternar entre o formulário de Login e Cadastro
         function toggleForm() {
             isLogin = !isLogin;
-
             const loginForm = document.getElementById("loginForm");
             const registerForm = document.getElementById("registerForm");
             const formHeading = document.getElementById("formHeading");
@@ -133,68 +126,7 @@
             }
         }
 
-        // Exibe o formulário de Login por padrão
         window.addEventListener("load", toggleForm);
-
-        // Função para fazer login
-        async function login() {
-            const email = document.getElementById("email").value;
-            const password = document.getElementById("password").value;
-            const message = document.getElementById("loginMessage");
-
-            try {
-                const response = await fetch('/login', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, password })
-                });
-
-                const data = await response.text();
-
-                if (response.ok) {
-                    message.textContent = "Login realizado com sucesso!";
-                    message.classList.remove("text-red-500");
-                    message.classList.add("text-green-500");
-                } else {
-                    message.textContent = data;
-                    message.classList.add("text-red-500");
-                }
-            } catch (error) {
-                console.error("Erro ao fazer login:", error);
-                message.textContent = "Erro ao fazer login. Tente novamente.";
-            }
-        }
-
-        // Função para fazer cadastro
-        async function register() {
-            const username = document.getElementById("username").value;
-            const email = document.getElementById("registerEmail").value;
-            const password = document.getElementById("registerPassword").value;
-            const message = document.getElementById("loginMessage");
-
-            try {
-                const response = await fetch('/register', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ username, email, password })
-                });
-
-                const data = await response.text();
-
-                if (response.ok) {
-                    message.textContent = "Cadastro realizado com sucesso! Faça login.";
-                    message.classList.remove("text-red-500");
-                    message.classList.add("text-green-500");
-                    toggleForm();
-                } else {
-                    message.textContent = data;
-                    message.classList.add("text-red-500");
-                }
-            } catch (error) {
-                console.error("Erro ao fazer cadastro:", error);
-                message.textContent = "Erro ao fazer cadastro. Tente novamente.";
-            }
-        }
 
         function toggleMenu() {
             const menu = document.getElementById("menu");
@@ -210,7 +142,6 @@
             }
         });
     </script>
-
 </body>
 
 </html>

@@ -33,19 +33,60 @@
     </div>
   </header>
 
-  <!-- Banner Principal -->
-  <section class="banner bg-cover bg-center text-white py-24" style="background-image: url('../image/banner.jpg');">
-    <div class="container mx-auto text-center">
-      <h1 class="text-5xl font-extrabold mb-4">Explore o Mundo pelos Rios</h1>
-      <p class="text-xl mb-8">Descubra destinos incríveis em viagens fluviais únicas</p>
-      <button class="bg-blue-700 hover:bg-blue-800 text-white py-2 px-6 rounded-lg text-lg">Explorar Destinos</button>
-    </div>
-  </section>
+
+  <!-- Solicitação de Viagem  -->
+<section class= "bg-gray-800 text-white py-6 mt-3">
+  <div class="container mx-auto px-6">
+    <h2 class="text-3xl font-bold text-blue-400 mb-6 text-center">Solicite sua Viagem
+
+    </h2>
+    <form class="bg-gray-700 p-6 rounded-lg shadow-lg">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        
+        <!-- Origem -->
+        <div>
+          <label for="origem" class="block text-sm font-medium mb-2">Origem:</label>
+          <input type="text" id="origem" name="origem" placeholder="Cidade de partida"
+            class="w-full p-3 border border-gray-600 rounded bg-gray-800 text-white">
+        </div>
+        
+        <!-- Destino -->
+        <div>
+          <label for="destino" class="block text-sm font-medium mb-2">Destino:</label>
+          <input type="text" id="destino" name="destino" placeholder="Cidade de destino"
+            class="w-full p-3 border border-gray-600 rounded bg-gray-800 text-white">
+        </div>
+        
+        <!-- Data de Ida -->
+        <div>
+          <label for="data-ida" class="block text-sm font-medium mb-2">Data de Ida:</label>
+          <input type="date" id="data-ida" name="data-ida"
+            class="w-full p-3 border border-gray-600 rounded bg-gray-800 text-white">
+        </div>
+        
+        <!-- Data de Volta -->
+        <div>
+          <label for="data-volta" class="block text-sm font-medium mb-2">Data de Volta (Opcional):</label>
+          <input type="date" id="data-volta" name="data-volta"
+            class="w-full p-3 border border-gray-600 rounded bg-gray-800 text-white">
+        </div>
+      </div>
+      
+      <!-- Botão de Solicitação -->
+      <div class="text-center mt-6">
+        <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg">
+          Solicitar Viagem
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
+
 
   <!-- Destinos Populares -->
-  <section class="destinos py-16 bg-gray-900">
+  <section class= "destinos py-4 bg-gray-900">
     <div class="container mx-auto text-center">
-      <h2 class="text-4xl font-semibold mb-12">Destinos Populares</h2>
+      <h2 class="text-4xl font-semibold mb-6">Destinos Populares</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <div class="card bg-gray-800 rounded-lg overflow-hidden shadow-md">
           <img src="../image/parintins.jpg" alt="Destino 1" class="w-full h-48 object-cover">
@@ -100,9 +141,9 @@
   </section>
 
   <!-- Como Funciona -->
-  <section class="bg-gray-900 py-16">
+  <section class= "bg-gray-900 py-6">
     <div class="container mx-auto text-center">
-      <h2 class="text-4xl font-semibold mb-12">Como Funciona</h2>
+      <h2 class="text-4xl font-semibold mb-8">Como Funciona</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
         <div class="etapa bg-gray-800 p-6 rounded-lg shadow-md">
           <i class="fas fa-map-marker-alt text-4xl mb-4 text-blue-600"></i>
