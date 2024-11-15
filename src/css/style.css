@@ -135,40 +135,58 @@ header nav ul li a,
     margin: auto;
 }
           
-/* Ajuste para o menu responsivo */
+/* Estilo base do menu */
 #menu {
+    display: none; /* Ocultar por padrão em dispositivos menores */
     position: absolute;
     top: 70px; /* Ajuste dependendo da altura do cabeçalho */
     right: 0;
     background-color: #01688a;
     width: 100%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    display: none; /* Oculta inicialmente em dispositivos móveis */
+    z-index: 10; /* Garante que o menu fique sobre outros elementos */
 }
 
 #menu ul {
     padding: 0;
     margin: 0;
-    flex-direction: column;
+    list-style: none;
+    text-align: center;
 }
 
 #menu ul li {
-    text-align: center;
-    padding: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid #2685bf; /* Linha divisória entre os itens */
+}
+
+#menu ul li:last-child {
+    border-bottom: none; /* Remove a borda do último item */
 }
 
 #menu ul li a {
-    display: block;
-    padding: 10px 20px;
     color: white;
+    padding: 10px 20px;
+    display: block;
     transition: background-color 0.3s;
+    font-size: 18px; /* Aumenta a fonte para melhor visualização */
 }
 
 #menu ul li a:hover {
     background-color: #2685bf;
 }
 
-/* Mostrar menu horizontal em telas maiores */
+/* Ícone do menu hamburguer */
+#burguer {
+    display: block;
+    cursor: pointer;
+}
+
+/* Classe usada para exibir o menu quando o botão é clicado */
+#menu.mobile-open {
+    display: block;
+}
+
+/* Estilos para telas maiores */
 @media (min-width: 768px) {
     #menu {
         display: flex !important;
@@ -179,29 +197,62 @@ header nav ul li a,
 
     #menu ul {
         flex-direction: row;
-        align-items: center;
+    }
+
+    #menu ul li {
+        display: inline-block;
+        padding: 0;
+        border: none;
+    }
+
+    #menu ul li a {
+        padding: 10px;
     }
 
     #burguer {
-        display: none;
+        display: none; /* Esconder o botão hamburguer */
     }
 }
 
-#burguer {
+
+
+
+/* Classe usada para exibir o menu quando o botão é clicado */
+#menu.mobile-open {
     display: block;
-    cursor: pointer;
 }
 
-.hidden {
-    display: none;
+/* Estilos para telas maiores */
+@media (min-width: 768px) {
+    #menu {
+        display: flex;
+        position: static;
+        background-color: transparent;
+        box-shadow: none;
+    }
+
+    #menu ul {
+        flex-direction: row;
+    }
+
+    #menu ul li {
+        display: inline-block;
+        padding: 0;
+    }
+
+    #menu ul li a {
+        padding: 10px;
+    }
+
+    #burguer {
+        display: none; /* Esconder o botão hamburguer */
+    }
 }
-
-
 
 
 /* Estilos do banner */
 .banner {
-    background-../image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url('../../image/portodemanaus.jpg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../../image/portodemanaus.jpg');
     background-size: cover;
     background-position: center;
     color: white;
@@ -418,7 +469,7 @@ header nav ul li a,
     color: #666;
 }
 
-.sobre-../imagem {
+.sobre-imagem {
     width: 150px;
     height: auto;
     border-radius: 10px;
