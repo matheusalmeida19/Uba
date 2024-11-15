@@ -36,30 +36,54 @@ body {
 }
 
 /* Ocultar menu em dispositivos menores */
-@media (max-width: 768px) {
-    #menu {
-        position: absolute;
-        top: 70px;
-        right: 0;
-        background-color: #01688a;
-        width: 100%;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    #menu.hidden {
-        display: none;
-    }
-
-    #menu ul {
-        flex-direction: column;
-    }
-
-    #burguer {
-        display: block;
-    }
+/* Estilo base do menu */
+#menu {
+    display: none; /* Ocultar por padrão */
+    position: absolute;
+    top: 70px;
+    right: 0;
+    background-color: #01688a;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Mostrar menu horizontal em telas maiores */
+/* Exibição horizontal dos itens em modo minimizado */
+#menu ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex; /* Alinhar horizontalmente */
+    justify-content: space-around; /* Espaço entre os itens */
+}
+
+#menu ul li {
+    text-align: center;
+    padding: 10px 0;
+}
+
+#menu ul li a {
+    color: white;
+    padding: 10px 20px;
+    display: block;
+    transition: background-color 0.3s;
+}
+
+#menu ul li a:hover {
+    background-color: #2685bf;
+}
+
+/* Ícone do menu hamburguer */
+#burguer {
+    display: block;
+    cursor: pointer;
+}
+
+/* Classe usada para exibir o menu quando o botão é clicado */
+#menu.mobile-open {
+    display: flex;
+}
+
+/* Ajustes para dispositivos maiores */
 @media (min-width: 768px) {
     #menu {
         display: flex !important;
@@ -68,15 +92,74 @@ body {
         box-shadow: none;
     }
 
-    #burguer {
-        display: none;
-    }
-
     #menu ul {
         flex-direction: row;
-        align-items: center;
+    }
+
+    #menu ul li {
+        display: inline-block;
+        padding: 0;
+    }
+
+    #menu ul li a {
+        padding: 10px;
+    }
+
+    #burguer {
+        display: none; /* Esconder o botão hamburguer */
     }
 }
+
+
+/* Controla o estado do menu */
+#menu {
+    display: none; /* Escondido por padrão */
+}
+
+#menu.hidden {
+    display: none; /* Classe para esconder */
+}
+
+#menu ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+#menu ul li {
+    text-align: center;
+    padding: 10px 0;
+}
+
+#menu ul li a {
+    color: white;
+    padding: 10px 20px;
+    display: block;
+    transition: background-color 0.3s;
+}
+
+#menu ul li a:hover {
+    background-color: #2685bf;
+}
+
+/* Estilo do menu aberto para dispositivos menores */
+@media (max-width: 768px) {
+    #menu {
+        position: absolute;
+        top: 70px; /* Ajustar conforme a altura do cabeçalho */
+        right: 0;
+        background-color: #01688a;
+        width: 100%;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+    }
+
+    #menu.hidden {
+        display: none;
+    }
+}
+
 
 /* Estilos globais */
 * {
@@ -85,6 +168,8 @@ body {
     box-sizing: border-box;
     
 }
+
+
 
 /* Estilo do Menu */
    /*LOGO - INICIO*/
@@ -135,6 +220,24 @@ header nav ul li a,
     margin: auto;
 }
           
+#drawerMenu {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+}
+
+#drawerMenu.open {
+    transform: translateX(0);
+}
+
+#burguer {
+    cursor: pointer;
+}
+
+body.drawer-open {
+    overflow: hidden;
+}
+
+
 /* Estilo base do menu */
 #menu {
     display: none; /* Ocultar por padrão em dispositivos menores */

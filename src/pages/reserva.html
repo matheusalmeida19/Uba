@@ -15,26 +15,27 @@
   <!-- Cabeçalho -->
   <header class="bg-blue-800 text-white shadow-md">
     <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-      <div id="uba" class="flex items-center space-x-2">
-        <a href="index.html" class="flex items-center space-x-2"> 
-          <span class="material-symbols-outlined text-4xl">directions_boat</span>
-          <h2 class="text-3xl font-semibold">Ubá</h2>
-        </a>
-      </div>
-      <span id="burguer" class="material-symbols-outlined text-3xl cursor-pointer md:hidden" onclick="clickMenu()">menu</span>
-
-      <nav id="menu" class="hidden md:flex space-x-6">
-        <a href="index.html" class="text-lg hover:text-gray-400">Home</a>
-        <a href="sobre.html" class="text-lg hover:text-gray-400">Sobre</a>
-        <a href="destino.html" class="text-lg hover:text-gray-400">Destinos</a>
-        <a href="reserva.html" class="text-lg hover:text-gray-400">Reservar</a>
-        <a href="contato.html" class="text-lg hover:text-gray-400">Contato</a>
-        <button class="bg-blue-700 text-white py-2 px-4 rounded-lg hover:bg-blue-600">
-          <a href="login.html">Login</a>
-        </button>
-      </nav>
+        <div id="uba" class="flex items-center space-x-2">
+            <a href="index.html" class="flex items-center space-x-2">
+                <span class="material-symbols-outlined text-4xl">directions_boat</span>
+                <h2 class="text-3xl font-semibold">Ubá</h2>
+            </a>
+        </div>
+        <span id="burguer" class="material-symbols-outlined text-3xl cursor-pointer md:hidden" onclick="toggleMenu()">menu</span>
+        <nav id="menu" class="hidden md:flex space-x-6">
+            <ul class="flex flex-col md:flex-row md:space-x-6">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="sobre.html">Sobre</a></li>
+                <li><a href="destino.html">Destinos</a></li>
+                <li><a href="reserva.html">Reservar</a></li>
+                <li><a href="contato.html">Contato</a></li>
+            </ul>
+            <button class="bg-blue-700 text-white py-2 px-4 rounded-lg hover:bg-blue-600">
+                <a href="login.html">Login</a>
+            </button>
+        </nav>
     </div>
-  </header>
+</header>
 
   <!-- Seção de Reserva -->
   <section class="reservas py-16">

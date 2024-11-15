@@ -21,17 +21,36 @@
             </a>
         </div>
         <span id="burguer" class="material-symbols-outlined text-3xl cursor-pointer md:hidden" onclick="toggleMenu()">menu</span>
-        <nav id="menu">
-            <ul>
+        <nav id="menu" class="hidden md:flex space-x-6">
+            <ul class="flex flex-col md:flex-row md:space-x-6">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="sobre.html">Sobre</a></li>
                 <li><a href="destino.html">Destinos</a></li>
                 <li><a href="reserva.html">Reservar</a></li>
                 <li><a href="contato.html">Contato</a></li>
             </ul>
+            <button class="bg-blue-700 text-white py-2 px-4 rounded-lg hover:bg-blue-600">
+                <a href="login.html">Login</a>
+            </button>
         </nav>
     </div>
 </header>
+
+
+<!-- Menu estilo drawer -->
+<nav id="drawerMenu" class="fixed top-0 left-0 h-full w-64 bg-blue-800 text-white shadow-lg hidden flex-col z-50">
+    <div class="flex justify-between items-center p-4 border-b border-gray-700">
+        <h2 class="text-lg font-semibold">Menu</h2>
+        <span class="material-symbols-outlined text-2xl cursor-pointer" onclick="toggleMenu()">close</span>
+    </div>
+    <ul class="mt-4 space-y-2 px-4">
+        <li><a href="index.html" class="block py-2 hover:bg-blue-700 rounded">Home</a></li>
+        <li><a href="sobre.html" class="block py-2 hover:bg-blue-700 rounded">Sobre</a></li>
+        <li><a href="destino.html" class="block py-2 hover:bg-blue-700 rounded">Destinos</a></li>
+        <li><a href="reserva.html" class="block py-2 hover:bg-blue-700 rounded">Reservar</a></li>
+        <li><a href="contato.html" class="block py-2 hover:bg-blue-700 rounded">Contato</a></li>
+    </ul>
+</nav>
 
 
   <!-- Solicitação de Viagem  -->
@@ -202,7 +221,13 @@
     }
   </script>
 
-  <script src="menu.js"></script>
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('menu');
+      menu.classList.toggle('hidden'); // Alterna a classe 'hidden' para exibir ou ocultar o menu
+    }
+  </script>
+
 
 </body>
 
