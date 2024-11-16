@@ -36,16 +36,17 @@
           </nav>      
         </div>
     </header>
+
     <!-- Main Content -->
     <main class="container mx-auto p-8">
-        <h2 id="formTitle" class="text-3xl font-semibold text-center text-white-400 mb-8">Bem-vindo ao Ubá - Faça Login</h2>
+        <h2 id="formTitle" class="text-3xl font-semibold text-center text-white-400 mb-8">Bem-vindo a Ubá - Faça Login</h2>
 
         <div class="flex justify-center">
             <!-- Formulário de Login/Cadastro -->
             <div class="bg-gray-800 p-6 rounded-lg shadow-lg w-full max-w-md">
                 <h3 id="formHeading" class="text-2xl font-semibold text-center text-white-400 mb-4">Entrar</h3>
                 <hr class="border-gray-600 mb-4">
-                
+
                 <!-- Formulário de Login -->
                 <form id="loginForm" style="display: none;">
                     <label for="email" class="block text-lg mb-2">Nome de usuário ou Email *</label>
@@ -56,6 +57,13 @@
 
                     <button type="button" onclick="login()" class="w-full py-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600">
                         Entrar
+                    </button>
+
+                    <div class="text-center my-4 text-gray-400">ou</div>
+
+                    <button type="button" class="w-full py-3 bg-white text-black font-semibold rounded-lg flex items-center justify-center gap-2 hover:bg-gray-200">
+                        <img src="https://www.google.com/images/branding/product/ico/googleg_lodp.ico" alt="Google" class="w-5 h-5">
+                        Entrar com o Google
                     </button>
                 </form>
 
@@ -72,6 +80,13 @@
 
                     <button type="button" onclick="register()" class="w-full py-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600">
                         Cadastre-se
+                    </button>
+
+                    <div class="text-center my-4 text-gray-400">ou</div>
+
+                    <button type="button" class="w-full py-3 bg-white text-black font-semibold rounded-lg flex items-center justify-center gap-2 hover:bg-gray-200">
+                        <img src="https://www.google.com/images/branding/product/ico/googleg_lodp.ico" alt="Google" class="w-5 h-5">
+                        Cadastre-se com o Google
                     </button>
                 </form>
 
@@ -102,7 +117,6 @@
           <p>©2024 Ubá Fluvial. Todos os direitos reservados.</p>
         </div>
       </footer>
-    
 
     <!-- JavaScript -->
     <script>
@@ -120,13 +134,13 @@
                 loginForm.style.display = "block";
                 registerForm.style.display = "none";
                 formHeading.textContent = "Entrar";
-                formTitle.textContent = "Bem-vindo ao Ubá - Faça Login";
+                formTitle.textContent = "Bem-vindo a Ubá - Faça Login";
                 toggleButton.textContent = "Não possui uma conta? Cadastre-se";
             } else {
                 loginForm.style.display = "none";
                 registerForm.style.display = "block";
                 formHeading.textContent = "Cadastre-se";
-                formTitle.textContent = "Crie sua Conta no Ubá";
+                formTitle.textContent = "Bem-vindo a Ubá - Crie sua Conta no Ubá";
                 toggleButton.textContent = "Já possui uma conta? Faça Login";
             }
         }
