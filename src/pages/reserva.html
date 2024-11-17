@@ -48,12 +48,20 @@
         <label for="destino" class="block text-lg mb-2">Destino:</label>
         <select id="destino" name="destino" class="w-full p-2 border border-gray-600 rounded bg-gray-700 text-white mb-4" onchange="mostrarDescricao()">
           <option value="">Selecione o destino</option>
+          <option value="Manaus">Manaus</option>
           <option value="Parintins">Parintins</option>
           <option value="Urucará">Urucará</option>
           <option value="Maués">Maués</option>
           <option value="Humaita">Humaitá</option>
           <option value="Itacoatiara">Itacoatiara</option>
           <option value="Tefé">Tefé</option>
+          <option value="Coari">Coari</option>
+          <option value="Barcelos">Barcelos</option>
+          <option value="Novo Airão">Novo Airão</option>
+          <option value="Terra Santa">Terra Santa</option>
+          <option value="Praia da Lua">Praia da Lua</option>
+          <option value="Praia do Tupé">Praia do Tupé</option>
+          <option value="Praia do Açutuba">Praia do Açutuba</option>
         </select>
 
         <!-- Descrição do destino -->
@@ -82,7 +90,7 @@
         <label for="passageiros" class="block text-lg mb-2">Número de passageiros:</label>
         <input type="number" id="passageiros" name="passageiros" min="1" max="10" value="1" required
           class="w-full p-2 border border-gray-600 rounded bg-gray-700 text-white mb-4">
-
+        
         <!-- Tipo de pagamento -->
         <label for="pagamento" class="block text-lg mb-2">Tipo de Pagamento:</label>
         <select id="pagamento" name="pagamento" class="w-full p-2 border border-gray-600 rounded bg-gray-700 text-white mb-4">
@@ -125,60 +133,98 @@
   </footer>
 
   <!-- Scripts -->
-  <script>
-    function mostrarDescricao() {
-      const destino = document.getElementById("destino").value;
-      const descricaoDestino = document.getElementById("descricao-destino");
-
-      const descricoes = {
-        "Parintins": "Parintins: Um destino cultural famoso pelo Festival Folclórico de Parintins.",
-        "Urucará": "Urucará: Localizado no Amazonas, oferece paisagens naturais exuberantes.",
-        "Maués": "Maués: Conhecida como a terra do guaraná, cercada por natureza e rios.",
-        "Humaita": "Humaitá: Cidade histórica com belas paisagens à beira do Rio Madeira.",
-        "Itacoatiara": "Itacoatiara: Cidade conhecida por suas belas praias fluviais e atividades náuticas.",
-        "Tefé": "Tefé: Porta de entrada para a Reserva de Desenvolvimento Sustentável Mamirauá."
-      };
-
-      descricaoDestino.textContent = descricoes[destino] || "Selecione um destino para ver mais informações.";
+<script>
+  function validarPassageiros() {
+    const inputPassageiros = document.getElementById('passageiros');
+    if (inputPassageiros.value > 10) {
+      inputPassageiros.value = 10; // Define o valor máximo se for ultrapassado
     }
+  }
 
-    function mostrarResumo() {
-      const destino = document.getElementById("destino").value;
-      const data = document.getElementById("data").value;
-      const embarcacao = document.getElementById("embarcacao").value;
-      const classe = document.getElementById("classe").value;
-      const passageiros = document.getElementById("passageiros").value;
-      const pagamento = document.getElementById("pagamento").value;
+  function mostrarResumo() {
+  const destino = document.getElementById("destino").value;
+  const data = document.getElementById("data").value;
+  let passageiros = document.getElementById("passageiros").value;
 
-      const resumoConteudo = `
-        <strong>Destino:</strong> ${destino}<br>
-        <strong>Data:</strong> ${data}<br>
-        <strong>Embarcação:</strong> ${embarcacao}<br>
-        <strong>Classe:</strong> ${classe}<br>
-        <strong>Passageiros:</strong> ${passageiros}<br>
-        <strong>Tipo de Pagamento:</strong> ${pagamento}
-      `;
+  // Validações
+  if (!destino) {
+    alert("Por favor, selecione um destino.");
+    return;
+  }
 
-      document.getElementById("resumo-conteudo").innerHTML = resumoConteudo;
+  if (!data) {
+    alert("Por favor, selecione uma data.");
+    return;
+  }
+
+  if (!passageiros || passageiros < 1 || passageiros > 10) {
+    alert("Por favor, insira um número de passageiros entre 1 e 10.");
+    return;
+  }
+
+  // Limita o número de passageiros a 10
+  if (passageiros > 10) {
+    passageiros = 10;
+    document.getElementById("passageiros").value = 10; // Atualiza o campo de entrada
+  }
+
+  const embarcacao = document.getElementById("embarcacao").value;
+  const classe = document.getElementById("classe").value;
+  const pagamento = document.getElementById("pagamento").value;
+
+  const resumoConteudo = `
+    <strong>Destino:</strong> ${destino}<br>
+    <strong>Data:</strong> ${data}<br>
+    <strong>Embarcação:</strong> ${embarcacao}<br>
+    <strong>Classe:</strong> ${classe}<br>
+    <strong>Passageiros:</strong> ${passageiros}<br>
+    <strong>Tipo de Pagamento:</strong> ${pagamento}
+  `;
+
+  document.getElementById("resumo-conteudo").innerHTML = resumoConteudo;
+}
+
+function mostrarDescricao() {
+  const destino = document.getElementById("destino").value;
+  const descricaoDestino = document.getElementById("descricao-destino");
+
+  const descricoes = {
+    "Manaus": "Manaus: A capital do Amazonas, famosa por seu Encontro das Águas e rica em cultura e história.",
+    "Parintins": "Parintins: Um destino cultural famoso pelo Festival Folclórico de Parintins.",
+    "Urucará": "Urucará: Localizado no Amazonas, oferece paisagens naturais exuberantes.",
+    "Maués": "Maués: Conhecida como a terra do guaraná, cercada por natureza e rios.",
+    "Humaita": "Humaitá: Cidade histórica com belas paisagens à beira do Rio Madeira.",
+    "Itacoatiara": "Itacoatiara: Cidade conhecida por suas belas praias fluviais e atividades náuticas.",
+    "Tefé": "Tefé: Porta de entrada para a Reserva de Desenvolvimento Sustentável Mamirauá.",
+    "Coari": "Coari: Cidade conhecida pela exploração de gás e petróleo, com belas paisagens à beira do Rio Solimões.",
+    "Barcelos": "Barcelos: Destino de pesca esportiva e lar do arquipélago de Mariuá, o maior arquipélago fluvial do mundo.",
+    "Novo Airão": "Novo Airão: Porta de entrada para o Parque Nacional de Anavilhanas, famoso pelos botos-cor-de-rosa.",
+    "Terra Santa": "Terra Santa: Pequena cidade com beleza natural e rica cultura ribeirinha.",
+    "Praia da Lua": "Praia da Lua: Praia fluvial em formato de meia-lua, ideal para relaxar e aproveitar a natureza.",
+    "Praia do Tupé": "Praia do Tupé: Cercada por vegetação exuberante, acessível apenas por barco, perfeita para contato com a natureza.",
+    "Praia do Açutuba": "Praia do Açutuba: Conhecida por suas areias brancas e águas tranquilas, um refúgio de paz próximo a Manaus."
+  };
+
+  descricaoDestino.textContent = descricoes[destino] || "Selecione um destino para ver mais informações.";
+}
+
+  function toggleMenu() {
+    const menu = document.getElementById("menu");
+    menu.classList.toggle("hidden");
+  }
+
+  function mudouoTamanho() {
+    const menu = document.getElementById("menu");
+    if (window.innerWidth >= 768) {
+      menu.classList.remove("hidden");
+    } else {
+      menu.classList.add("hidden");
     }
+  }
 
-    function toggleMenu() {
-      const menu = document.getElementById("menu");
-      menu.classList.toggle("hidden");
-    }
-
-    function mudouoTamanho() {
-      const menu = document.getElementById("menu");
-      if (window.innerWidth >= 768) {
-        menu.classList.remove("hidden");
-      } else {
-        menu.classList.add("hidden");
-      }
-    }
-
-    window.addEventListener("resize", mudouoTamanho);
-    window.addEventListener("load", mudouoTamanho);
-  </script>
+  window.addEventListener("resize", mudouoTamanho);
+  window.addEventListener("load", mudouoTamanho);
+</script>
 
   <script src="menu.js"></script>
 </body>
