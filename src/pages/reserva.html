@@ -44,6 +44,27 @@
       <p class="text-center text-gray-300 mb-3 py-1">Para fazer sua reserva, selecione o destino, data, embarcação e finalize seu pagamento.</p>
 
       <form action="#" method="post" class="bg-gray-800 shadow-md rounded-lg p-8">
+        <!-- Local de Origem -->
+        <label for="origem" class="block text-lg mb-2">Local de Origem:</label>
+        <select id="origem" name="origem" class="w-full p-2 border border-gray-600 rounded bg-gray-700 text-white mb-4" required>
+          <option value="">Selecione o local de origem</option>
+          <option value="Manaus">Manaus</option>
+          <option value="Parintins">Parintins</option>
+          <option value="Urucará">Urucará</option>
+          <option value="Maués">Maués</option>
+          <option value="Humaita">Humaitá</option>
+          <option value="Itacoatiara">Itacoatiara</option>
+          <option value="Tefé">Tefé</option>
+          <option value="Coari">Coari</option>
+          <option value="Barcelos">Barcelos</option>
+          <option value="Novo Airão">Novo Airão</option>
+          <option value="Terra Santa">Terra Santa</option>
+          <option value="Praia da Lua">Praia da Lua</option>
+          <option value="Praia do Tupé">Praia do Tupé</option>
+          <option value="Praia do Açutuba">Praia do Açutuba</option>
+        </select>
+
+      <form action="#" method="post" class="bg-gray-800 shadow-md rounded-lg p-8">
         <!-- Escolha do destino -->
         <label for="destino" class="block text-lg mb-2">Destino:</label>
         <select id="destino" name="destino" class="w-full p-2 border border-gray-600 rounded bg-gray-700 text-white mb-4" onchange="mostrarDescricao()">
@@ -67,9 +88,13 @@
         <!-- Descrição do destino -->
         <p id="descricao-destino" class="text-gray-400 mb-4">Selecione um destino para ver mais informações.</p>
 
-        <!-- Data da viagem -->
-        <label for="data" class="block text-lg mb-2">Data:</label>
-        <input type="date" id="data" name="data" required class="w-full p-2 border border-gray-600 rounded bg-gray-700 text-white mb-4">
+        <!-- Data de Ida -->
+        <label for="data-ida" class="block text-lg mb-2">Data de Ida:</label>
+        <input type="date" id="data-ida" name="data-ida" required class="w-full p-2 border border-gray-600 rounded bg-gray-700 text-white mb-4">
+
+        <!-- Data de Volta -->
+        <label for="data-volta" class="block text-lg mb-2">Data de Volta (Opcional):</label>
+        <input type="date" id="data-volta" name="data-volta" class="w-full p-2 border border-gray-600 rounded bg-gray-700 text-white mb-4">
 
         <!-- Escolha de embarcação -->
         <label for="embarcacao" class="block text-lg mb-2">Embarcação:</label>
@@ -142,18 +167,25 @@
   }
 
   function mostrarResumo() {
+  const origem = document.getElementById('origem').value;
   const destino = document.getElementById("destino").value;
-  const data = document.getElementById("data").value;
+  const dataIda = document.getElementById("data-ida").value;
   let passageiros = document.getElementById("passageiros").value;
 
   // Validações
+
+  if (!origem) {
+      alert("Por favor, selecione um local de origem.");
+      return false;
+  }
+  
   if (!destino) {
     alert("Por favor, selecione um destino.");
     return;
   }
 
-  if (!data) {
-    alert("Por favor, selecione uma data.");
+  if (!dataIda) {
+    alert("Por favor, selecione uma data de ida.");
     return;
   }
 
@@ -224,6 +256,30 @@ function mostrarDescricao() {
 
   window.addEventListener("resize", mudouoTamanho);
   window.addEventListener("load", mudouoTamanho);
+
+const destinos = [
+    "Manaus", "Parintins", "Urucará", "Maués", "Humaitá",
+    "Itacoatiara", "Tefé", "Coari", "Barcelos", "Novo Airão",
+    "Terra Santa", "Praia da Lua", "Praia do Tupé", "Praia do Açutuba"
+  ];
+
+  function preencherSelects() {
+    const origemSelect = document.getElementById('origem');
+    const destinoSelect = document.getElementById('destino');
+
+    destinos.forEach(destino => {
+      const optionOrigem = document.createElement('option');
+      optionOrigem.value = destino;
+      optionOrigem.textContent = destino;
+      origemSelect.appendChild(optionOrigem);
+
+      const optionDestino = optionOrigem.cloneNode(true);
+      destinoSelect.appendChild(optionDestino);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', preencherSelects);
+
 </script>
 
   <script src="menu.js"></script>

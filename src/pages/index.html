@@ -63,18 +63,51 @@
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         
         <!-- Origem -->
-        <div>
-          <label for="origem" class="block text-sm font-medium mb-2">Origem:</label>
-          <input type="text" id="origem" name="origem" placeholder="Cidade de partida"
-            class="w-full p-3 border border-gray-600 rounded bg-gray-800 text-white">
-        </div>
-        
-        <!-- Destino -->
-        <div>
-          <label for="destino" class="block text-sm font-medium mb-2">Destino:</label>
-          <input type="text" id="destino" name="destino" placeholder="Cidade de destino"
-            class="w-full p-3 border border-gray-600 rounded bg-gray-800 text-white">
-        </div>
+<div>
+  <label for="origem" class="block text-sm font-medium mb-2">Origem:</label>
+  <select id="origem" name="origem" class="w-full p-3 border border-gray-600 rounded bg-gray-800 text-white">
+    <option value="">Selecione o local de origem</option>
+    <option value="">Selecione o local de origem</option>
+          <option value="Manaus">Manaus</option>
+          <option value="Parintins">Parintins</option>
+          <option value="Urucará">Urucará</option>
+          <option value="Maués">Maués</option>
+          <option value="Humaita">Humaitá</option>
+          <option value="Itacoatiara">Itacoatiara</option>
+          <option value="Tefé">Tefé</option>
+          <option value="Coari">Coari</option>
+          <option value="Barcelos">Barcelos</option>
+          <option value="Novo Airão">Novo Airão</option>
+          <option value="Terra Santa">Terra Santa</option>
+          <option value="Praia da Lua">Praia da Lua</option>
+          <option value="Praia do Tupé">Praia do Tupé</option>
+          <option value="Praia do Açutuba">Praia do Açutuba</option>
+  </select>
+</div>
+
+<!-- Destino -->
+<div>
+  <label for="destino" class="block text-sm font-medium mb-2">Destino:</label>
+  <select id="destino" name="destino" class="w-full p-3 border border-gray-600 rounded bg-gray-800 text-white">
+    <option value="">Selecione o destino</option>
+    <option value="">Selecione o local de origem</option>
+          <option value="Manaus">Manaus</option>
+          <option value="Parintins">Parintins</option>
+          <option value="Urucará">Urucará</option>
+          <option value="Maués">Maués</option>
+          <option value="Humaita">Humaitá</option>
+          <option value="Itacoatiara">Itacoatiara</option>
+          <option value="Tefé">Tefé</option>
+          <option value="Coari">Coari</option>
+          <option value="Barcelos">Barcelos</option>
+          <option value="Novo Airão">Novo Airão</option>
+          <option value="Terra Santa">Terra Santa</option>
+          <option value="Praia da Lua">Praia da Lua</option>
+          <option value="Praia do Tupé">Praia do Tupé</option>
+          <option value="Praia do Açutuba">Praia do Açutuba</option>
+  </select>
+</div>
+
         
         <!-- Data de Ida -->
         <div>
@@ -93,7 +126,8 @@
       
       <!-- Botão de Solicitação -->
       <div class="text-center mt-6">
-        <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg">
+        <button type="button" onclick="window.location.href='reserva.html'" 
+                class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg">
           Solicitar Viagem
         </button>
       </div>

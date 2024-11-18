@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contato | UBÁ Passagens Fluviais</title>
+  <title>Solicitação Recebida | UBÁ Passagens Fluviais</title>
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
@@ -37,34 +37,17 @@
     </div>
   </header>
 
-  <!-- Seção Contato -->
-  <section class="contato py-8 bg-gray-900">
+  <!-- Seção Solicitação Recebida -->
+  <section class="solicitacao py-8 bg-gray-900">
     <div class="container mx-auto text-center">
-      <h2 class="text-4xl font-semibold mb-6">Entre em Contato Conosco</h2>
-      <p class="text-lg mb-12">Se você tiver alguma dúvida ou quiser falar conosco, preencha o formulário abaixo ou
-        utilize uma das formas de contato.</p>
-
-        <form id="contatoForm" action="/send-email" method="POST" class="contato-form max-w-xl mx-auto bg-gray-800 p-8 rounded-lg shadow-lg">
-          <div class="mb-4">
-            <label for="nome" class="block text-left text-sm font-medium mb-1">Nome:</label>
-            <input type="text" id="nome" name="nome" required
-              class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
-          </div>
-          <div class="mb-4">
-            <label for="email" class="block text-left text-sm font-medium mb-1">Email:</label>
-            <input type="email" id="email" name="email" required
-              class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
-          </div>
-          <div class="mb-4">
-            <label for="mensagem" class="block text-left text-sm font-medium mb-1">Mensagem:</label>
-            <textarea id="mensagem" name="mensagem" rows="4" required
-              class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
-          </div>
-          <button type="submit"
-            class="w-full bg-blue-700 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
-            Enviar
-          </button>
-        </form>        
+      <h2 class="text-4xl font-semibold mb-6">Solicitação Recebida</h2>
+      <p class="text-lg mb-12">Obrigado por entrar em contato conosco! Sua mensagem foi recebida com sucesso.</p>
+      <p class="text-lg">Nossa equipe analisará sua solicitação e retornará o mais breve possível.</p>
+      <div class="mt-8">
+        <a href="index.html" class="bg-blue-700 text-white py-3 px-8 rounded-lg hover:bg-blue-600 text-xl">
+          Voltar para Home
+        </a>
+      </div>
     </div>
   </section>
 
@@ -89,11 +72,6 @@
   </footer>
 
   <script>
-    document.getElementById('contatoForm').addEventListener('submit', function(event) {
-      event.preventDefault(); // Impede o envio padrão do formulário
-      window.location.href = 'solicitacao.html'; // Redireciona para a página de solicitação
-    });
-
     function toggleMenu() {
       const menu = document.getElementById("menu");
       menu.classList.toggle("hidden");
@@ -115,4 +93,3 @@
 </body>
 
 </html>
-
