@@ -38,6 +38,19 @@
   </header>
 
   <!-- Seção de Reserva -->
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      
+      document.getElementById('origem').value = params.get('origem') || '';
+      document.getElementById('destino').value = params.get('destino') || '';
+      document.getElementById('data-ida').value = params.get('dataIda') || '';
+      document.getElementById('data-volta').value = params.get('dataVolta') || '';
+    });
+    </script>
+    
+
   <section class="reservas py-6">
     <div class="container mx-auto px-6">
       <h2 class="text-4xl font-bold text-center text-white-500 mb-3 px-4">Reservas</h2>
@@ -46,44 +59,15 @@
       <form action="#" method="post" class="bg-gray-800 shadow-md rounded-lg p-8">
         <!-- Local de Origem -->
         <label for="origem" class="block text-lg mb-2">Local de Origem:</label>
-        <select id="origem" name="origem" class="w-full p-2 border border-gray-600 rounded bg-gray-700 text-white mb-4" required>
-          <option value="">Selecione o local de origem</option>
-          <option value="Manaus">Manaus</option>
-          <option value="Parintins">Parintins</option>
-          <option value="Urucará">Urucará</option>
-          <option value="Maués">Maués</option>
-          <option value="Humaita">Humaitá</option>
-          <option value="Itacoatiara">Itacoatiara</option>
-          <option value="Tefé">Tefé</option>
-          <option value="Coari">Coari</option>
-          <option value="Barcelos">Barcelos</option>
-          <option value="Novo Airão">Novo Airão</option>
-          <option value="Terra Santa">Terra Santa</option>
-          <option value="Praia da Lua">Praia da Lua</option>
-          <option value="Praia do Tupé">Praia do Tupé</option>
-          <option value="Praia do Açutuba">Praia do Açutuba</option>
-        </select>
+<select id="origem" name="origem" class="w-full p-2 border border-gray-600 rounded bg-gray-700 text-white mb-4" required>
+  <option value="">Selecione o local de origem</option>
+</select>
 
-      <form action="#" method="post" class="bg-gray-800 shadow-md rounded-lg p-8">
-        <!-- Escolha do destino -->
-        <label for="destino" class="block text-lg mb-2">Destino:</label>
-        <select id="destino" name="destino" class="w-full p-2 border border-gray-600 rounded bg-gray-700 text-white mb-4" onchange="mostrarDescricao()">
-          <option value="">Selecione o destino</option>
-          <option value="Manaus">Manaus</option>
-          <option value="Parintins">Parintins</option>
-          <option value="Urucará">Urucará</option>
-          <option value="Maués">Maués</option>
-          <option value="Humaita">Humaitá</option>
-          <option value="Itacoatiara">Itacoatiara</option>
-          <option value="Tefé">Tefé</option>
-          <option value="Coari">Coari</option>
-          <option value="Barcelos">Barcelos</option>
-          <option value="Novo Airão">Novo Airão</option>
-          <option value="Terra Santa">Terra Santa</option>
-          <option value="Praia da Lua">Praia da Lua</option>
-          <option value="Praia do Tupé">Praia do Tupé</option>
-          <option value="Praia do Açutuba">Praia do Açutuba</option>
-        </select>
+<label for="destino" class="block text-lg mb-2">Destino:</label>
+<select id="destino" name="destino" class="w-full p-2 border border-gray-600 rounded bg-gray-700 text-white mb-4" onchange="mostrarDescricao()">
+  <option value="">Selecione o destino</option>
+</select>
+
 
         <!-- Descrição do destino -->
         <p id="descricao-destino" class="text-gray-400 mb-4">Selecione um destino para ver mais informações.</p>
@@ -157,8 +141,47 @@
     </div>
   </footer>
 
-  <!-- Scripts -->
+<!-- Scripts -->
 <script>
+  const destinos = [
+    "Manaus", "Parintins", "Urucará", "Maués", "Humaitá",
+    "Itacoatiara", "Tefé", "Coari", "Barcelos", "Novo Airão",
+    "Terra Santa", "Praia da Lua", "Praia do Tupé", "Praia do Açutuba"
+  ];
+
+  function preencherSelects() {
+    const origemSelect = document.getElementById('origem');
+    const destinoSelect = document.getElementById('destino');
+
+    // Verifica se os selects já têm opções para evitar duplicação
+    if (origemSelect.options.length === 1) {
+      destinos.forEach(destino => {
+        const optionOrigem = document.createElement('option');
+        optionOrigem.value = destino;
+        optionOrigem.textContent = destino;
+        origemSelect.appendChild(optionOrigem);
+      });
+    }
+
+    if (destinoSelect.options.length === 1) {
+      destinos.forEach(destino => {
+        const optionDestino = document.createElement('option');
+        optionDestino.value = destino;
+        optionDestino.textContent = destino;
+        destinoSelect.appendChild(optionDestino);
+      });
+    }
+
+    // Agora que os selects estão preenchidos, atribuir valores da URL
+    const params = new URLSearchParams(window.location.search);
+    origemSelect.value = params.get('origem') || '';
+    destinoSelect.value = params.get('destino') || '';
+    document.getElementById('data-ida').value = params.get('dataIda') || '';
+    document.getElementById('data-volta').value = params.get('dataVolta') || '';
+  }
+
+  document.addEventListener('DOMContentLoaded', preencherSelects);
+
   function validarPassageiros() {
     const inputPassageiros = document.getElementById('passageiros');
     if (inputPassageiros.value > 10) {
@@ -167,78 +190,74 @@
   }
 
   function mostrarResumo() {
-  const origem = document.getElementById('origem').value;
-  const destino = document.getElementById("destino").value;
-  const dataIda = document.getElementById("data-ida").value;
-  let passageiros = document.getElementById("passageiros").value;
+    const origem = document.getElementById('origem').value;
+    const destino = document.getElementById('destino').value;
+    const dataIda = document.getElementById('data-ida').value;
+    const dataVolta = document.getElementById('data-volta').value || "Não informado"; // Opcional
+    let passageiros = document.getElementById('passageiros').value;
 
-  // Validações
-
-  if (!origem) {
+    // Validações
+    if (!origem) {
       alert("Por favor, selecione um local de origem.");
-      return false;
+      return;
+    }
+
+    if (!destino) {
+      alert("Por favor, selecione um destino.");
+      return;
+    }
+
+    if (!dataIda) {
+      alert("Por favor, selecione uma data de ida.");
+      return;
+    }
+
+    if (!passageiros || passageiros < 1 || passageiros > 10) {
+      alert("Por favor, insira um número de passageiros entre 1 e 10.");
+      return;
+    }
+
+    const embarcacao = document.getElementById('embarcacao').value;
+    const classe = document.getElementById('classe').value;
+    const pagamento = document.getElementById('pagamento').value;
+
+    const resumoConteudo = `
+      <strong>Origem:</strong> ${origem}<br>
+      <strong>Destino:</strong> ${destino}<br>
+      <strong>Data de Ida:</strong> ${dataIda}<br>
+      <strong>Data de Volta:</strong> ${dataVolta}<br>
+      <strong>Embarcação:</strong> ${embarcacao}<br>
+      <strong>Classe:</strong> ${classe}<br>
+      <strong>Passageiros:</strong> ${passageiros}<br>
+      <strong>Tipo de Pagamento:</strong> ${pagamento}
+    `;
+
+    document.getElementById('resumo-conteudo').innerHTML = resumoConteudo;
   }
-  
-  if (!destino) {
-    alert("Por favor, selecione um destino.");
-    return;
+
+  function mostrarDescricao() {
+    const destino = document.getElementById("destino").value;
+    const descricaoDestino = document.getElementById("descricao-destino");
+
+    const descricoes = {
+      "Manaus": "Manaus: A capital do Amazonas, famosa por seu Encontro das Águas e rica em cultura e história.",
+      "Parintins": "Parintins: Um destino cultural famoso pelo Festival Folclórico de Parintins.",
+      "Urucará": "Urucará: Localizado no Amazonas, oferece paisagens naturais exuberantes.",
+      "Maués": "Maués: Conhecida como a terra do guaraná, cercada por natureza e rios.",
+      "Humaita": "Humaitá: Cidade histórica com belas paisagens à beira do Rio Madeira.",
+      "Itacoatiara": "Itacoatiara: Cidade conhecida por suas belas praias fluviais e atividades náuticas.",
+      "Tefé": "Tefé: Porta de entrada para a Reserva de Desenvolvimento Sustentável Mamirauá.",
+      "Coari": "Coari: Cidade conhecida pela exploração de gás e petróleo, com belas paisagens à beira do Rio Solimões.",
+      "Barcelos": "Barcelos: Destino de pesca esportiva e lar do arquipélago de Mariuá, o maior arquipélago fluvial do mundo.",
+      "Novo Airão": "Novo Airão: Porta de entrada para o Parque Nacional de Anavilhanas, famoso pelos botos-cor-de-rosa.",
+      "Terra Santa": "Terra Santa: Pequena cidade com beleza natural e rica cultura ribeirinha.",
+      "Praia da Lua": "Praia da Lua: Praia fluvial em formato de meia-lua, ideal para relaxar e aproveitar a natureza.",
+      "Praia do Tupé": "Praia do Tupé: Cercada por vegetação exuberante, acessível apenas por barco, perfeita para contato com a natureza.",
+      "Praia do Açutuba": "Praia do Açutuba: Conhecida por suas areias brancas e águas tranquilas, um refúgio de paz próximo a Manaus."
+    };
+
+    descricaoDestino.textContent = descricoes[destino] || "Selecione um destino para ver mais informações.";
   }
-
-  if (!dataIda) {
-    alert("Por favor, selecione uma data de ida.");
-    return;
-  }
-
-  if (!passageiros || passageiros < 1 || passageiros > 10) {
-    alert("Por favor, insira um número de passageiros entre 1 e 10.");
-    return;
-  }
-
-  // Limita o número de passageiros a 10
-  if (passageiros > 10) {
-    passageiros = 10;
-    document.getElementById("passageiros").value = 10; // Atualiza o campo de entrada
-  }
-
-  const embarcacao = document.getElementById("embarcacao").value;
-  const classe = document.getElementById("classe").value;
-  const pagamento = document.getElementById("pagamento").value;
-
-  const resumoConteudo = `
-    <strong>Destino:</strong> ${destino}<br>
-    <strong>Data:</strong> ${data}<br>
-    <strong>Embarcação:</strong> ${embarcacao}<br>
-    <strong>Classe:</strong> ${classe}<br>
-    <strong>Passageiros:</strong> ${passageiros}<br>
-    <strong>Tipo de Pagamento:</strong> ${pagamento}
-  `;
-
-  document.getElementById("resumo-conteudo").innerHTML = resumoConteudo;
-}
-
-function mostrarDescricao() {
-  const destino = document.getElementById("destino").value;
-  const descricaoDestino = document.getElementById("descricao-destino");
-
-  const descricoes = {
-    "Manaus": "Manaus: A capital do Amazonas, famosa por seu Encontro das Águas e rica em cultura e história.",
-    "Parintins": "Parintins: Um destino cultural famoso pelo Festival Folclórico de Parintins.",
-    "Urucará": "Urucará: Localizado no Amazonas, oferece paisagens naturais exuberantes.",
-    "Maués": "Maués: Conhecida como a terra do guaraná, cercada por natureza e rios.",
-    "Humaita": "Humaitá: Cidade histórica com belas paisagens à beira do Rio Madeira.",
-    "Itacoatiara": "Itacoatiara: Cidade conhecida por suas belas praias fluviais e atividades náuticas.",
-    "Tefé": "Tefé: Porta de entrada para a Reserva de Desenvolvimento Sustentável Mamirauá.",
-    "Coari": "Coari: Cidade conhecida pela exploração de gás e petróleo, com belas paisagens à beira do Rio Solimões.",
-    "Barcelos": "Barcelos: Destino de pesca esportiva e lar do arquipélago de Mariuá, o maior arquipélago fluvial do mundo.",
-    "Novo Airão": "Novo Airão: Porta de entrada para o Parque Nacional de Anavilhanas, famoso pelos botos-cor-de-rosa.",
-    "Terra Santa": "Terra Santa: Pequena cidade com beleza natural e rica cultura ribeirinha.",
-    "Praia da Lua": "Praia da Lua: Praia fluvial em formato de meia-lua, ideal para relaxar e aproveitar a natureza.",
-    "Praia do Tupé": "Praia do Tupé: Cercada por vegetação exuberante, acessível apenas por barco, perfeita para contato com a natureza.",
-    "Praia do Açutuba": "Praia do Açutuba: Conhecida por suas areias brancas e águas tranquilas, um refúgio de paz próximo a Manaus."
-  };
-
-  descricaoDestino.textContent = descricoes[destino] || "Selecione um destino para ver mais informações.";
-}
 
   function toggleMenu() {
     const menu = document.getElementById("menu");
@@ -253,34 +272,10 @@ function mostrarDescricao() {
       menu.classList.add("hidden");
     }
   }
-
-  window.addEventListener("resize", mudouoTamanho);
-  window.addEventListener("load", mudouoTamanho);
-
-const destinos = [
-    "Manaus", "Parintins", "Urucará", "Maués", "Humaitá",
-    "Itacoatiara", "Tefé", "Coari", "Barcelos", "Novo Airão",
-    "Terra Santa", "Praia da Lua", "Praia do Tupé", "Praia do Açutuba"
-  ];
-
-  function preencherSelects() {
-    const origemSelect = document.getElementById('origem');
-    const destinoSelect = document.getElementById('destino');
-
-    destinos.forEach(destino => {
-      const optionOrigem = document.createElement('option');
-      optionOrigem.value = destino;
-      optionOrigem.textContent = destino;
-      origemSelect.appendChild(optionOrigem);
-
-      const optionDestino = optionOrigem.cloneNode(true);
-      destinoSelect.appendChild(optionDestino);
-    });
-  }
-
-  document.addEventListener('DOMContentLoaded', preencherSelects);
-
-</script>
+  
+    window.addEventListener("resize", mudouoTamanho);
+    window.addEventListener("load", mudouoTamanho);
+  </script>  
 
   <script src="menu.js"></script>
 </body>

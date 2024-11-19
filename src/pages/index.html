@@ -59,14 +59,13 @@
     <h2 class="text-3xl font-bold text-white-400 mb-6 text-center">Solicite sua Viagem
 
     </h2>
-    <form class="bg-gray-700 p-6 rounded-lg shadow-lg">
+    <form class="bg-gray-700 p-6 rounded-lg shadow-lg" method="GET" action="reserva.html">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         
         <!-- Origem -->
 <div>
   <label for="origem" class="block text-sm font-medium mb-2">Origem:</label>
   <select id="origem" name="origem" class="w-full p-3 border border-gray-600 rounded bg-gray-800 text-white">
-    <option value="">Selecione o local de origem</option>
     <option value="">Selecione o local de origem</option>
           <option value="Manaus">Manaus</option>
           <option value="Parintins">Parintins</option>
@@ -88,23 +87,22 @@
 <!-- Destino -->
 <div>
   <label for="destino" class="block text-sm font-medium mb-2">Destino:</label>
-  <select id="destino" name="destino" class="w-full p-3 border border-gray-600 rounded bg-gray-800 text-white">
+  <select id="destino" name="destino" class="w-full p-3 border border-gray-600 rounded bg-gray-800 text-white" required>
     <option value="">Selecione o destino</option>
-    <option value="">Selecione o local de origem</option>
-          <option value="Manaus">Manaus</option>
-          <option value="Parintins">Parintins</option>
-          <option value="Urucará">Urucará</option>
-          <option value="Maués">Maués</option>
-          <option value="Humaita">Humaitá</option>
-          <option value="Itacoatiara">Itacoatiara</option>
-          <option value="Tefé">Tefé</option>
-          <option value="Coari">Coari</option>
-          <option value="Barcelos">Barcelos</option>
-          <option value="Novo Airão">Novo Airão</option>
-          <option value="Terra Santa">Terra Santa</option>
-          <option value="Praia da Lua">Praia da Lua</option>
-          <option value="Praia do Tupé">Praia do Tupé</option>
-          <option value="Praia do Açutuba">Praia do Açutuba</option>
+    <option value="Manaus">Manaus</option>
+    <option value="Parintins">Parintins</option>
+    <option value="Urucará">Urucará</option>
+    <option value="Maués">Maués</option>
+    <option value="Humaita">Humaitá</option>
+    <option value="Itacoatiara">Itacoatiara</option>
+    <option value="Tefé">Tefé</option>
+    <option value="Coari">Coari</option>
+    <option value="Barcelos">Barcelos</option>
+    <option value="Novo Airão">Novo Airão</option>
+    <option value="Terra Santa">Terra Santa</option>
+    <option value="Praia da Lua">Praia da Lua</option>
+    <option value="Praia do Tupé">Praia do Tupé</option>
+    <option value="Praia do Açutuba">Praia do Açutuba</option>
   </select>
 </div>
 
@@ -112,27 +110,40 @@
         <!-- Data de Ida -->
         <div>
           <label for="data-ida" class="block text-sm font-medium mb-2">Data de Ida:</label>
-          <input type="date" id="data-ida" name="data-ida"
-            class="w-full p-3 border border-gray-600 rounded bg-gray-800 text-white">
+          <input type="date" id="data-ida" name="dataIda" class="w-full p-3 border border-gray-600 rounded bg-gray-800 text-white" required>
         </div>
         
         <!-- Data de Volta -->
         <div>
           <label for="data-volta" class="block text-sm font-medium mb-2">Data de Volta (Opcional):</label>
-          <input type="date" id="data-volta" name="data-volta"
-            class="w-full p-3 border border-gray-600 rounded bg-gray-800 text-white">
+          <input type="date" id="data-volta" name="dataVolta" class="w-full p-3 border border-gray-600 rounded bg-gray-800 text-white">
         </div>
       </div>
       
       <!-- Botão de Solicitação -->
-      <div class="text-center mt-6">
-        <button type="button" onclick="window.location.href='reserva.html'" 
-                class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg">
-          Solicitar Viagem
-        </button>
-      </div>
-    </form>
-  </div>
+<div class="text-center mt-6">
+  <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg">
+    Solicitar Viagem
+  </button>    
+</div>
+
+<script>
+function enviarDados() {
+  const origem = document.getElementById('origem').value;
+  const destino = document.getElementById('destino').value;
+  const dataIda = document.getElementById('data-ida').value;
+  const dataVolta = document.getElementById('data-volta').value;
+
+  if (!origem || !destino || !dataIda) {
+    alert("Por favor, preencha os campos obrigatórios.");
+    return;
+  }
+
+  const queryString = `reserva.html?origem=${encodeURIComponent(origem)}&destino=${encodeURIComponent(destino)}&dataIda=${dataIda}&dataVolta=${dataVolta}`;
+  window.location.href = queryString;
+}
+</script>
+
 </section>
 
 
