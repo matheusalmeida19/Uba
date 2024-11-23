@@ -48,36 +48,29 @@
                 <hr class="border-gray-600 mb-4">
 
                 <!-- Formulário de Login -->
-                <form id="loginForm" style="display: none;">
+                <form id="loginForm" action="/login" method="POST" style="display: none;">
                     <label for="email" class="block text-lg mb-2">Nome de usuário ou Email *</label>
                     <input type="text" name="email" id="email" class="w-full p-3 mb-4 border border-gray-600 rounded-lg bg-gray-700 text-white" required>
-
+                
                     <label for="password" class="block text-lg mb-2">Senha *</label>
                     <input type="password" name="password" id="password" class="w-full p-3 mb-4 border border-gray-600 rounded-lg bg-gray-700 text-white" required>
-
-                    <button type="button" onclick="login()" class="w-full py-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600">
+                
+                    <button type="submit" class="w-full py-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600">
                         Entrar
                     </button>
-
-                    <div class="text-center my-4 text-gray-400">ou</div>
-
-                    <button type="button" class="w-full py-3 bg-white text-black font-semibold rounded-lg flex items-center justify-center gap-2 hover:bg-gray-200">
-                        <img src="https://www.google.com/images/branding/product/ico/googleg_lodp.ico" alt="Google" class="w-5 h-5">
-                        Entrar com o Google
-                    </button>
-                </form>
+                </form>                
 
                 <!-- Formulário de Cadastro -->
-                <form id="registerForm" style="display: none;">
+                <form id="registerForm" action="/register" method="POST" style="display: none;">
                     <label for="username" class="block text-lg mb-2">Nome de usuário *</label>
                     <input type="text" name="username" id="username" class="w-full p-3 mb-4 border border-gray-600 rounded-lg bg-gray-700 text-white" required>
-
+                
                     <label for="email" class="block text-lg mb-2">Email *</label>
                     <input type="email" name="email" id="registerEmail" class="w-full p-3 mb-4 border border-gray-600 rounded-lg bg-gray-700 text-white" required>
-
+                
                     <label for="password" class="block text-lg mb-2">Senha *</label>
                     <input type="password" name="password" id="registerPassword" class="w-full p-3 mb-4 border border-gray-600 rounded-lg bg-gray-700 text-white" required>
-
+                
                     <button type="button" onclick="register()" class="w-full py-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600">
                         Cadastre-se
                     </button>
@@ -160,6 +153,33 @@
                 menu.classList.add("hidden");
             }
         });
+
+        function register() {
+  const username = document.getElementById('username').value;
+  const email = document.getElementById('registerEmail').value;
+  const password = document.getElementById('registerPassword').value;
+
+  fetch('/register', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ username, email, password }),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        return response.text().then((text) => {
+          throw new Error(text);
+        });
+      }
+      return response.text();
+    })
+    .then((data) => {
+      document.getElementById('loginMessage').innerHTML = data;
+    })
+    .catch((error) => {
+      console.error('Erro:', error);
+      document.getElementById('loginMessage').innerHTML = error.message;
+    });
+}
     </script>
 
 <script src="menu.js"></script>
