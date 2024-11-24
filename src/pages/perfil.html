@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfil | UBÁ Passagens Fluviais</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+  <link rel="shortcut icon" href="/image/boat.png" type="image/x-icon">
+</head>
+
+<body class="bg-gray-900 text-white font-sans">
+  <!-- Header -->
+  <header class="bg-blue-800 text-white shadow-md">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <div id="uba" class="flex items-center space-x-2">
+        <a href="index.html" class="flex items-center space-x-2">
+          <span class="material-symbols-outlined text-4xl">directions_boat</span>
+          <h2 class="text-3xl font-semibold">Ubá</h2>
+        </a>
+      </div>
+      <nav id="menu" class="md:flex space-x-6 hidden">
+        <ul class="flex space-x-6">
+          <li><a href="index.html" class="text-lg font-bold">Home</a></li>
+          <li><a href="sobre.html" class="text-lg font-bold">Sobre</a></li>
+          <li><a href="reserva.html" class="text-lg font-bold">Reservar</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Perfil do Usuário -->
+  <main class="container mx-auto p-6">
+    <section class="bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+      <div class="flex flex-col items-center">
+        <img id="userPhoto" src="/image/default-profile.png" alt="Foto do Usuário" class="w-24 h-24 rounded-full mb-4">
+        <h2 id="username" class="text-2xl font-semibold">Nome do Usuário</h2>
+        <p id="userEmail" class="text-gray-400">email@usuario.com</p>
+      </div>
+    </section>
+
+    <!-- Reservas -->
+    <section class="mt-8 bg-gray-800 p-6 rounded-lg shadow-lg">
+      <h3 class="text-xl font-semibold mb-4">Minhas Reservas</h3>
+      <ul id="reservas" class="space-y-4">
+        <li class="bg-gray-700 p-4 rounded-lg">Nenhuma reserva encontrada.</li>
+      </ul>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-blue-800 text-white py-6 mt-16">
+    <div class="container mx-auto text-center">
+      <p>©2024 UBÁ Passagens Fluviais. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      try {
+        // Recupera o token armazenado
+        const token = document.cookie.split('; ').find(row => row.startsWith('token=')).split('=')[1];
+
+        // Solicita informações do perfil
+        const response = await fetch('/api/perfil', {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+
+        if (!response.ok) {
+          throw new Error('Erro ao carregar o perfil');
+        }
+
+        const userData = await response.json();
+
+        // Atualiza a página com as informações do usuário
+        document.getElementById('userPhoto').src = userData.photo || '/image/default-profile.png';
+        document.getElementById('username').textContent = userData.username;
+        document.getElementById('userEmail').textContent = userData.email;
+
+        // Exibe as reservas do usuário
+        const reservasList = document.getElementById('reservas');
+        reservasList.innerHTML = '';
+        userData.reservas.forEach(reserva => {
+          const reservaItem = document.createElement('li');
+          reservaItem.classList.add('bg-gray-700', 'p-4', 'rounded-lg');
+          reservaItem.textContent = `Reserva para ${reserva.destino} em ${reserva.data}`;
+          reservasList.appendChild(reservaItem);
+        });
+      } catch (error) {
+        console.error('Erro ao carregar o perfil:', error);
+        alert('Erro ao carregar informações do perfil. Faça login novamente.');
+        window.location.href = '/login.html';
+      }
+    });
+  </script>
+</body>
+
+</html>

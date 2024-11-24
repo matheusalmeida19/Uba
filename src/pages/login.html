@@ -180,6 +180,34 @@
       document.getElementById('loginMessage').innerHTML = error.message;
     });
 }
+
+function login() {
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+
+  fetch('/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, password }),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        return response.text().then((text) => {
+          throw new Error(text);
+        });
+      }
+      return response.json(); // Espera que o servidor retorne um JSON com o token
+    })
+    .then((data) => {
+      document.cookie = `token=${data.token}; path=/`; // Armazena o token em um cookie
+      window.location.href = '/perfil'; // Redireciona para a página de perfil
+    })
+    .catch((error) => {
+      console.error('Erro ao fazer login:', error);
+      document.getElementById('loginMessage').innerHTML = error.message;
+    });
+}
+
     </script>
 
 <script src="menu.js"></script>

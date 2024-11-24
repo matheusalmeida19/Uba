@@ -285,7 +285,49 @@ function enviarDados() {
       menu.classList.toggle('hidden'); // Alterna a classe 'hidden' para exibir ou ocultar o menu
     }
   </script>
+  
+  <script>
+    // Função para ajustar o menu para dispositivos móveis
+    function mudouoTamanho() {
+      if (window.innerWidth <= 768) {
+        document.getElementById('menu').style.display = 'none';
+      } else {
+        document.getElementById('menu').style.display = 'flex';
+      }
+    }
 
+    // Alterna o menu visível/invisível em dispositivos móveis
+    function clickMenu() {
+      const menu = document.getElementById('menu');
+      menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    }
+
+    // Função para exibir ou ocultar o menu (usada no ícone de hambúrguer)
+    function toggleMenu() {
+      const menu = document.getElementById('menu');
+      menu.classList.toggle('hidden'); // Alterna a classe 'hidden' para exibir ou ocultar o menu
+    }
+
+    // Script para substituir o botão de login pelo perfil do usuário após o login
+    document.addEventListener("DOMContentLoaded", () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const username = urlParams.get('username');
+
+      if (username) {
+        // Substituir botão de login pelo perfil do usuário
+        const menu = document.getElementById("menu");
+        const loginButton = menu.querySelector("button");
+
+        if (loginButton) {
+          loginButton.remove(); // Remove o botão de login
+        }
+
+        const profileItem = document.createElement("li");
+        profileItem.innerHTML = `<a href="/perfil" class="text-lg font-bold">Perfil (${username})</a>`;
+        menu.querySelector("ul").appendChild(profileItem); // Adiciona o perfil ao menu
+      }
+    });
+  </script>
 
 </body>
 

@@ -8,10 +8,21 @@ generator client {
 }
 
 model User {
-  id        Int     @id @default(autoincrement())
-  username  String  @unique
-  email     String  @unique
+  id        Int       @id @default(autoincrement())
+  username  String    @unique
+  email     String    @unique
   password  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  photo     String?   
+  reservas  Reserva[] 
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
 }
+
+model Reserva {
+  id        Int       @id @default(autoincrement())
+  destino   String
+  data      DateTime
+  userId    Int
+  user      User      @relation(fields: [userId], references: [id])
+}
+

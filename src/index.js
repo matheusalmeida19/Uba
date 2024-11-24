@@ -5,11 +5,24 @@ import bodyParser from 'body-parser';
 import nodemailer from 'nodemailer'; // Para envio de e-mails
 import { registerUser, loginUser } from './controllers/userController.js';
 import { prisma } from './prisma.js';
+import { authenticateToken } from './middlewares/authMiddleware.js';
+import cookieParser from 'cookie-parser';
 
 dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 8000;
+
+app.use(cookieParser());
+
+// Rota de perfil protegida
+app.get('/perfil', authenticateToken, (req, res) => {
+  // A middleware adiciona os dados do usuário em req.user
+  res.status(200).send(`
+    <h2>Bem-vindo ao seu perfil, ${req.user.username}!</h2>
+    <p>Email: ${req.user.email}</p>
+  `);
+});
 
 // Middleware para processar o corpo das requisições
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -71,8 +84,12 @@ app.post('/send-email', async (req, res) => {
 // Rota para registro de usuário
 app.post('/register', registerUser);
 
-// Rota para login de usuário
-app.post('/login', loginUser);
+// Adicionando uma rota para redirecionar após o login com o token
+app.post('/login', loginUser, (req, res) => {
+  const { token } = res.locals; // Recebe o token do middleware
+  res.cookie('token', token, { httpOnly: true }); // Configura o cookie com o token
+  res.redirect('/perfil'); // Redireciona o usuário para a página de perfil
+});
 
 // Rota para criação de solicitação
 app.post('/solicitar', async (req, res) => {
@@ -106,6 +123,32 @@ app.get('/test-email', (req, res) => {
     }
   });
 });
+
+// Rota protegida para obter informações do perfil
+app.get('/api/perfil', authenticateToken, async (req, res) => {
+  try {
+    // Obtém informações do usuário a partir do token
+    const user = await prisma.user.findUnique({
+      where: { id: req.user.id },
+      include: { reservas: true }, // Inclui reservas (relacione no banco, se ainda não estiver)
+    });
+
+    if (!user) {
+      return res.status(404).json({ error: 'Usuário não encontrado' });
+    }
+
+    res.json({
+      username: user.username,
+      email: user.email,
+      photo: user.photo, // Caso adicione fotos no futuro
+      reservas: user.reservas || [], // Lista de reservas do usuário
+    });
+  } catch (error) {
+    console.error('Erro ao carregar perfil:', error);
+    res.status(500).json({ error: 'Erro ao carregar perfil' });
+  }
+});
+
 
 // Iniciar o servidor
 app.listen(port, () => {
