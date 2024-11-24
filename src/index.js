@@ -68,14 +68,14 @@ app.post('/login', async (req, res) => {
 
 // Rota de sucesso de login
 app.get('/loginSucesso.html', (req, res) => {
-  const filePath = path.join(path.resolve(), 'src/pages/loginSucesso.html');
-  res.sendFile(filePath, (err) => {
-    if (err) {
-      console.error(`Erro ao carregar o arquivo loginSucesso.html: ${err.message}`);
-      res.status(404).send('<h2>Arquivo não encontrado: loginSucesso.html</h2>');
-    }
+  res.sendFile('src/pages/loginSucesso.html', { root: '.' }, (err) => {
+      if (err) {
+          console.error(`Erro ao carregar loginSucesso.html: ${err.message}`);
+          res.status(404).send('<h2>Arquivo não encontrado: loginSucesso.html</h2>');
+      }
   });
 });
+
 
 // Rota para envio de e-mails
 app.post('/send-email', async (req, res) => {
