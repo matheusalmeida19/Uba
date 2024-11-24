@@ -1,5 +1,5 @@
 import bcrypt from 'bcryptjs';
-import { prisma } from '../prisma.js';
+import { prisma } from '../prisma.js'; // Importando o Prisma Client
 import jwt from 'jsonwebtoken';
 
 // Função de registro do usuário
