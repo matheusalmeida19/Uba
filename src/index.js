@@ -18,18 +18,18 @@ const port = process.env.PORT || 8000;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-console.log(`Diretório base do projeto: ${__dirname}`); // Log para verificação do caminho base
+console.log(`Diretório base do projeto: ${__dirname}`); // Log para verificar o diretório base
 
 // Middleware para parse de cookies e body
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// Caminho corrigido para os arquivos estáticos
-const staticPath = path.resolve(__dirname, './src/pages'); // Usando `path.resolve` para evitar duplicações
+// Caminho correto para os arquivos estáticos
+const staticPath = path.join(__dirname, 'pages'); // Corrigido para evitar duplicação de 'src'
 console.log(`Servindo arquivos estáticos de: ${staticPath}`);
-app.use(express.static(staticPath)); // Servir arquivos estáticos do diretório correto
-app.use('/image', express.static(path.resolve(__dirname, './src/image'))); // Servir imagens corretamente
+app.use(express.static(staticPath));
+app.use('/image', express.static(path.join(__dirname, 'image'))); // Servir imagens corretamente
 
 // Rota principal (index.html)
 app.get('/', (req, res) => {
@@ -43,14 +43,15 @@ app.get('/', (req, res) => {
   });
 });
 
-// Rota para loginSucesso.html
-app.get('/loginSucesso.html', (req, res) => {
-  const filePath = path.join(staticPath, 'loginSucesso.html');
-  console.log(`Carregando arquivo loginSucesso.html de: ${filePath}`);
+// Rotas dinâmicas para arquivos estáticos (e.g., login.html, loginSucesso.html)
+app.get('/:page', (req, res) => {
+  const fileName = req.params.page;
+  const filePath = path.join(staticPath, fileName);
+  console.log(`Carregando arquivo ${fileName} de: ${filePath}`);
   res.sendFile(filePath, (err) => {
     if (err) {
-      console.error(`Erro ao carregar loginSucesso.html: ${err.message}`);
-      res.status(404).send('<h2>Arquivo loginSucesso.html não encontrado</h2>');
+      console.error(`Erro ao carregar ${fileName}: ${err.message}`);
+      res.status(404).send(`<h2>Arquivo ${fileName} não encontrado</h2>`);
     }
   });
 });
