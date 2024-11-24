@@ -32,6 +32,18 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'pages', 'index.html'));
 });
 
+// Rota para loginSucesso.html
+app.get('/loginSucesso.html', (req, res) => {
+  const filePath = path.join(__dirname, 'pages', 'loginSucesso.html'); // Corrigido para evitar duplicação de 'src'
+  console.log(`Tentando carregar: ${filePath}`); // Log para verificar o caminho
+  res.sendFile(filePath, (err) => {
+    if (err) {
+      console.error(`Erro ao carregar loginSucesso.html: ${err.message}`);
+      res.status(404).send('<h2>Arquivo loginSucesso.html não encontrado</h2>');
+    }
+  });
+});
+
 // Rota protegida para o perfil do usuário
 app.get('/perfil', authenticateToken, async (req, res) => {
   try {
@@ -69,18 +81,6 @@ app.post('/login', async (req, res) => {
     console.error('Erro ao fazer login:', error);
     res.status(401).send('<h2>Erro ao fazer login. Verifique suas credenciais.</h2>');
   }
-});
-
-// Rota de sucesso de login
-app.get('/loginSucesso.html', (req, res) => {
-  const filePath = path.join(__dirname, 'pages', 'loginSucesso.html');
-  console.log(`Tentando carregar: ${filePath}`); // Log para verificar o caminho
-  res.sendFile(filePath, (err) => {
-    if (err) {
-      console.error(`Erro ao carregar loginSucesso.html: ${err.message}`);
-      res.status(404).send('<h2>Arquivo loginSucesso.html não encontrado</h2>');
-    }
-  });
 });
 
 // Rota para envio de e-mails
