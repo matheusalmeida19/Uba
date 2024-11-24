@@ -57,9 +57,9 @@ app.post('/register', registerUser);
 // Rota para login do usuário
 app.post('/login', async (req, res) => {
   try {
-    const token = await loginUser(req); // Chama a função de login para autenticação
+    const { token, username } = await loginUser(req); // Chama a função de login para autenticação
     res.cookie('token', token, { httpOnly: true }); // Salva o token em um cookie HTTP-only
-    res.redirect(`/loginSucesso.html?username=${req.body.email}`); // Redireciona para a página de sucesso com o username
+    res.redirect(`/loginSucesso.html?username=${username}`); // Redireciona para a página de sucesso com o username
   } catch (error) {
     console.error('Erro ao fazer login:', error);
     res.status(401).send('<h2>Erro ao fazer login. Verifique suas credenciais.</h2>');
@@ -163,7 +163,7 @@ app.get('/test-email', (req, res) => {
       console.error('Erro ao enviar e-mail de teste:', error);
       res.status(500).send('<h2>Erro ao enviar e-mail de teste.</h2>');
     } else {
-      console.log('E-mail de teste enviado:', info.response);
+      console.log('E-mail de teste enviado com sucesso:', info.response);
       res.send('<h2>E-mail de teste enviado com sucesso!</h2>');
     }
   });

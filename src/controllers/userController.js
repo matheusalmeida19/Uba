@@ -38,7 +38,7 @@ export const registerUser = async (req, res) => {
 };
 
 // Função de login do usuário
-export const loginUser = async (req, res, next) => {
+export const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
   try {
@@ -63,11 +63,11 @@ export const loginUser = async (req, res, next) => {
       { expiresIn: '1h' }
     );
 
-    // Configura o token em um cookie e redireciona para a página inicial
-    res.cookie('token', token, { httpOnly: true });
-    res.redirect(`/loginSucesso.html?username=${user.username}`);
+    // Retorna o token e o username
+    return { token, username: user.username };
   } catch (error) {
     console.error('Erro ao fazer login:', error);
     res.status(500).send('<h2>Erro ao fazer login. Tente novamente.</h2>');
   }
 };
+
