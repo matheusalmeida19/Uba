@@ -24,12 +24,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // Servir arquivos estáticos
-app.use(express.static(path.join(__dirname, 'src/pages')));
-app.use('/image', express.static(path.join(__dirname, 'src/image')));
+app.use(express.static(path.join(__dirname, '/pages')));
+app.use('/image', express.static(path.join(__dirname, '/image')));
 
 // Rota principal (index.html)
 app.get('/', (req, res) => {
-  const filePath = path.join(__dirname, 'src/pages', 'index.html');
+  const filePath = path.join(__dirname, '/pages', 'index.html');
   res.sendFile(filePath, (err) => {
     if (err) {
       console.error(`Erro ao carregar index.html: ${err.message}`);
@@ -40,7 +40,7 @@ app.get('/', (req, res) => {
 
 // Rota para loginSucesso.html
 app.get('/loginSucesso.html', (req, res) => {
-  const filePath = path.join(__dirname, 'src/pages', 'loginSucesso.html');
+  const filePath = path.join(__dirname, '/pages', 'loginSucesso.html');
   res.sendFile(filePath, (err) => {
     if (err) {
       console.error(`Erro ao carregar loginSucesso.html: ${err.message}`);
