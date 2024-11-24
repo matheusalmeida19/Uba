@@ -1,6 +1,7 @@
 import dotenv from 'dotenv'; // Carregar variáveis de ambiente do arquivo .env
 import express from 'express';
 import path from 'path';
+import { fileURLToPath } from 'url'; // Necessário para lidar com import.meta.url em ESM
 import bodyParser from 'body-parser';
 import nodemailer from 'nodemailer'; // Para envio de e-mails
 import cookieParser from 'cookie-parser';
@@ -13,18 +14,22 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 8000;
 
+// Obter o diretório atual do arquivo
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 // Middleware para parse de cookies e body
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // Servir arquivos estáticos
-app.use(express.static(path.join(path.resolve(), 'src/pages')));
-app.use('/image', express.static(path.join(path.resolve(), 'src/image')));
+app.use(express.static(path.join(__dirname, 'pages')));
+app.use('/image', express.static(path.join(__dirname, 'image')));
 
 // Rota principal (index.html)
 app.get('/', (req, res) => {
-  res.sendFile(path.join(path.resolve(), 'src/pages/index.html'));
+  res.sendFile(path.join(__dirname, 'pages', 'index.html'));
 });
 
 // Rota protegida para o perfil do usuário
@@ -68,14 +73,15 @@ app.post('/login', async (req, res) => {
 
 // Rota de sucesso de login
 app.get('/loginSucesso.html', (req, res) => {
-  res.sendFile('/pages/loginSucesso.html', { root: '.' }, (err) => {
-      if (err) {
-          console.error(`Erro ao carregar loginSucesso.html: ${err.message}`);
-          res.status(404).send('<h2>Arquivo não encontrado: loginSucesso.html</h2>');
-      }
+  const filePath = path.join(__dirname, 'pages', 'loginSucesso.html');
+  console.log(`Tentando carregar: ${filePath}`); // Log para verificar o caminho
+  res.sendFile(filePath, (err) => {
+    if (err) {
+      console.error(`Erro ao carregar loginSucesso.html: ${err.message}`);
+      res.status(404).send('<h2>Arquivo loginSucesso.html não encontrado</h2>');
+    }
   });
 });
-
 
 // Rota para envio de e-mails
 app.post('/send-email', async (req, res) => {
