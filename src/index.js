@@ -24,17 +24,17 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // Servir arquivos estáticos
-app.use(express.static(path.join(__dirname, 'pages')));
-app.use('/image', express.static(path.join(__dirname, 'image')));
+app.use(express.static(path.join(__dirname, 'src/pages')));
+app.use('/image', express.static(path.join(__dirname, 'src/image')));
 
 // Rota principal (index.html)
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'pages', 'index.html'));
+  res.sendFile(path.join(__dirname, 'src/pages', 'index.html'));
 });
 
 // Rota para loginSucesso.html
 app.get('/loginSucesso.html', (req, res) => {
-  const filePath = path.join(__dirname, 'pages', 'loginSucesso.html'); // Corrigido para evitar duplicação de 'src'
+  const filePath = path.join(__dirname, 'src/pages', 'loginSucesso.html'); // Corrigido para evitar duplicação de 'src'
   console.log(`Tentando carregar: ${filePath}`); // Log para verificar o caminho
   res.sendFile(filePath, (err) => {
     if (err) {
