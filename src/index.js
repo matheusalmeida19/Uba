@@ -29,13 +29,18 @@ app.use('/image', express.static(path.join(__dirname, 'src/image')));
 
 // Rota principal (index.html)
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'src/pages', 'index.html'));
+  const filePath = path.join(__dirname, 'src/pages', 'index.html');
+  res.sendFile(filePath, (err) => {
+    if (err) {
+      console.error(`Erro ao carregar index.html: ${err.message}`);
+      res.status(404).send('<h2>Arquivo index.html não encontrado</h2>');
+    }
+  });
 });
 
 // Rota para loginSucesso.html
 app.get('/loginSucesso.html', (req, res) => {
-  const filePath = path.join(__dirname, 'src/pages', 'loginSucesso.html'); // Corrigido para evitar duplicação de 'src'
-  console.log(`Tentando carregar: ${filePath}`); // Log para verificar o caminho
+  const filePath = path.join(__dirname, 'src/pages', 'loginSucesso.html');
   res.sendFile(filePath, (err) => {
     if (err) {
       console.error(`Erro ao carregar loginSucesso.html: ${err.message}`);
