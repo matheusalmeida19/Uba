@@ -14,21 +14,10 @@ const app = express();
 const port = process.env.PORT || 8000;
 
 app.use(cookieParser());
-
-// Rota de perfil protegida
-app.get('/perfil', authenticateToken, (req, res) => {
-  // A middleware adiciona os dados do usuário em req.user
-  res.status(200).send(`
-    <h2>Bem-vindo ao seu perfil, ${req.user.username}!</h2>
-    <p>Email: ${req.user.email}</p>
-  `);
-});
-
-// Middleware para processar o corpo das requisições
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// Definir o diretório estático para os arquivos HTML e imagens
+// Definir diretórios estáticos para arquivos HTML e imagens
 app.use(express.static(path.join(path.resolve(), 'src/pages')));
 app.use('/image', express.static(path.join(path.resolve(), 'src/image')));
 
@@ -37,11 +26,16 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(path.resolve(), 'src/pages/index.html'));
 });
 
+// Rota para o perfil do usuário
+app.get('/perfil', authenticateToken, (req, res) => {
+  res.sendFile(path.join(path.resolve(), 'src/pages/perfil.html'));
+});
+
 // Configuração do transporte de e-mail
 const transporter = nodemailer.createTransport({
   host: 'smtp.gmail.com',
   port: 587,
-  secure: false, // false para STARTTLS
+  secure: false,
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
@@ -66,7 +60,7 @@ app.post('/send-email', async (req, res) => {
 
   const mailOptions = {
     from: process.env.EMAIL_USER,
-    to: process.env.EMAIL_USER, // Receber no mesmo e-mail
+    to: process.env.EMAIL_USER,
     subject: `Nova mensagem de contato: ${nome}`,
     text: `Nome: ${nome}\nEmail: ${email}\nMensagem: ${mensagem}`,
   };
@@ -84,27 +78,61 @@ app.post('/send-email', async (req, res) => {
 // Rota para registro de usuário
 app.post('/register', registerUser);
 
-// Adicionando uma rota para redirecionar após o login com o token
-app.post('/login', loginUser, (req, res) => {
-  const { token } = res.locals; // Recebe o token do middleware
-  res.cookie('token', token, { httpOnly: true }); // Configura o cookie com o token
-  res.redirect('/perfil'); // Redireciona o usuário para a página de perfil
+// Rota para login do usuário
+app.post('/login', async (req, res) => {
+  try {
+    const token = await loginUser(req); // Chama a função de login para autenticação
+    res.cookie('token', token, { httpOnly: true, secure: true }); // Salva o token no cookie
+    res.redirect('/loginSucesso.html'); // Redireciona para a página de sucesso
+  } catch (error) {
+    console.error('Erro ao fazer login:', error);
+    res.status(400).send('<h2>Erro ao fazer login. Verifique suas credenciais.</h2>');
+  }
 });
 
-// Rota para criação de solicitação
+// Rota para servir a página de sucesso de login
+app.get('/loginSucesso.html', (req, res) => {
+  res.sendFile(path.join(path.resolve(), 'src/pages/loginSucesso.html'));
+});
+
+// Rota protegida para obter informações do perfil do usuário
+app.get('/api/perfil', authenticateToken, async (req, res) => {
+  try {
+    const user = await prisma.user.findUnique({
+      where: { id: req.user.id },
+      include: { reservas: true },
+    });
+
+    if (!user) {
+      return res.status(404).json({ error: 'Usuário não encontrado' });
+    }
+
+    res.json({
+      username: user.username,
+      email: user.email,
+      photo: user.photo || '', // Caso fotos sejam adicionadas
+      reservas: user.reservas || [],
+    });
+  } catch (error) {
+    console.error('Erro ao carregar perfil:', error);
+    res.status(500).json({ error: 'Erro ao carregar perfil' });
+  }
+});
+
+// Rota para criação de solicitações de viagem
 app.post('/solicitar', async (req, res) => {
   const { local, destino } = req.body;
 
   try {
     await prisma.solicitacao.create({ data: { local, destino } });
-    res.send('<h2>Solicitação Recebida e salva! Obrigado.</h2>');
+    res.send('<h2>Solicitação recebida e salva! Obrigado.</h2>');
   } catch (error) {
     console.error('Erro ao salvar no banco:', error);
     res.status(500).send('<h2>Erro ao processar a solicitação.</h2>');
   }
 });
 
-// Rota de teste de envio de e-mail
+// Rota de teste para envio de e-mails
 app.get('/test-email', (req, res) => {
   const mailOptions = {
     from: process.env.EMAIL_USER,
@@ -124,33 +152,7 @@ app.get('/test-email', (req, res) => {
   });
 });
 
-// Rota protegida para obter informações do perfil
-app.get('/api/perfil', authenticateToken, async (req, res) => {
-  try {
-    // Obtém informações do usuário a partir do token
-    const user = await prisma.user.findUnique({
-      where: { id: req.user.id },
-      include: { reservas: true }, // Inclui reservas (relacione no banco, se ainda não estiver)
-    });
-
-    if (!user) {
-      return res.status(404).json({ error: 'Usuário não encontrado' });
-    }
-
-    res.json({
-      username: user.username,
-      email: user.email,
-      photo: user.photo, // Caso adicione fotos no futuro
-      reservas: user.reservas || [], // Lista de reservas do usuário
-    });
-  } catch (error) {
-    console.error('Erro ao carregar perfil:', error);
-    res.status(500).json({ error: 'Erro ao carregar perfil' });
-  }
-});
-
-
 // Iniciar o servidor
 app.listen(port, () => {
-  console.log(`Servidor Iniciado com Sucesso na porta ${port}`);
+  console.log(`Servidor iniciado com sucesso na porta ${port}`);
 });

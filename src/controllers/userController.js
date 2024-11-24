@@ -1,5 +1,5 @@
 import bcrypt from 'bcryptjs';
-import { prisma } from '../prisma.js'; // Importando o Prisma Client
+import { prisma } from '../prisma.js';
 import jwt from 'jsonwebtoken';
 
 // Função de registro do usuário
@@ -18,7 +18,7 @@ export const registerUser = async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const newUser = await prisma.user.create({
+    await prisma.user.create({
       data: {
         username,
         email,
@@ -42,7 +42,7 @@ export const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    // Verifica se o usuário existe no banco de dados
+    // Verifica se o usuário existe
     const user = await prisma.user.findUnique({
       where: { email },
     });
@@ -58,13 +58,14 @@ export const loginUser = async (req, res) => {
     }
 
     const token = jwt.sign(
-      { id: user.id, username: user.username, email: user.email }, // Informações do usuário no token
-      process.env.JWT_SECRET, // Chave secreta
-      { expiresIn: '1h' } // Expiração do token
+      { id: user.id, username: user.username, email: user.email },
+      process.env.JWT_SECRET,
+      { expiresIn: '1h' }
     );
 
-    // Redireciona para loginSucesso.html com o token e o nome do usuário
-    res.redirect(`/loginSucesso.html?token=${token}&username=${user.username}`);
+    // Configura o token em um cookie e redireciona para a página inicial
+    res.cookie('token', token, { httpOnly: true });
+    res.redirect(`/loginSucesso.html?username=${user.username}`);
   } catch (error) {
     console.error('Erro ao fazer login:', error);
     res.status(500).send('<h2>Erro ao fazer login. Tente novamente.</h2>');
