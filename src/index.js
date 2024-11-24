@@ -18,18 +18,23 @@ const port = process.env.PORT || 8000;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+console.log(`Diretório base do projeto: ${__dirname}`); // Log para verificação do caminho base
+
 // Middleware para parse de cookies e body
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // Servir arquivos estáticos
-app.use(express.static(path.join(__dirname, '/pages')));
-app.use('/image', express.static(path.join(__dirname, '/image')));
+const staticPath = path.join(__dirname, 'src/pages');
+console.log(`Servindo arquivos estáticos de: ${staticPath}`);
+app.use(express.static(staticPath));
+app.use('/image', express.static(path.join(__dirname, 'src/image')));
 
 // Rota principal (index.html)
 app.get('/', (req, res) => {
-  const filePath = path.join(__dirname, '/pages', 'index.html');
+  const filePath = path.join(staticPath, 'index.html');
+  console.log(`Carregando arquivo index.html de: ${filePath}`);
   res.sendFile(filePath, (err) => {
     if (err) {
       console.error(`Erro ao carregar index.html: ${err.message}`);
@@ -40,7 +45,8 @@ app.get('/', (req, res) => {
 
 // Rota para loginSucesso.html
 app.get('/loginSucesso.html', (req, res) => {
-  const filePath = path.join(__dirname, '/pages', 'loginSucesso.html');
+  const filePath = path.join(staticPath, 'loginSucesso.html');
+  console.log(`Carregando arquivo loginSucesso.html de: ${filePath}`);
   res.sendFile(filePath, (err) => {
     if (err) {
       console.error(`Erro ao carregar loginSucesso.html: ${err.message}`);
@@ -140,50 +146,6 @@ app.post('/solicitar', authenticateToken, async (req, res) => {
     console.error('Erro ao salvar solicitação:', error);
     res.status(500).send('<h2>Erro ao salvar solicitação.</h2>');
   }
-});
-
-// Rota de teste para cookies
-app.get('/test-cookie', (req, res) => {
-  const token = req.cookies.token;
-
-  if (!token) {
-    return res.status(401).send('<h2>Token não encontrado</h2>');
-  }
-
-  res.status(200).send('<h2>Cookie encontrado!</h2>');
-});
-
-// Rota de teste de envio de e-mails
-app.get('/test-email', (req, res) => {
-  const mailOptions = {
-    from: process.env.EMAIL_USER,
-    to: process.env.EMAIL_USER,
-    subject: 'Teste de envio de e-mail',
-    text: 'Se você recebeu esta mensagem, o envio de e-mail está funcionando!',
-  };
-
-  const transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 587,
-    secure: false,
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
-    },
-    tls: {
-      rejectUnauthorized: false,
-    },
-  });
-
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      console.error('Erro ao enviar e-mail de teste:', error);
-      res.status(500).send('<h2>Erro ao enviar e-mail de teste.</h2>');
-    } else {
-      console.log('E-mail de teste enviado com sucesso:', info.response);
-      res.send('<h2>E-mail de teste enviado com sucesso!</h2>');
-    }
-  });
 });
 
 // Iniciar o servidor
