@@ -10,24 +10,45 @@
 </head>
 
 <body class="bg-gray-900 text-white font-sans">
-  <!-- Header -->
+  <!-- Cabeçalho -->
   <header class="bg-blue-800 text-white shadow-md">
     <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <!-- Logo -->
       <div id="uba" class="flex items-center space-x-2">
         <a href="index.html" class="flex items-center space-x-2">
           <span class="material-symbols-outlined text-4xl">directions_boat</span>
           <h2 class="text-3xl font-semibold">Ubá</h2>
         </a>
       </div>
-      <nav id="menu" class="md:flex space-x-6 hidden">
-        <ul class="flex space-x-6">
+      <!-- Botão do menu para dispositivos móveis -->
+      <button id="menu-toggle" class="md:hidden focus:outline-none">
+        <span class="material-symbols-outlined text-3xl">menu</span>
+      </button>
+      <!-- Menu de navegação -->
+      <nav id="menu" class="hidden md:flex space-x-6 items-center">
+        <ul class="flex flex-col md:flex-row md:space-x-6">
           <li><a href="index.html" class="text-lg font-bold">Home</a></li>
           <li><a href="sobre.html" class="text-lg font-bold">Sobre</a></li>
+          <li><a href="destino.html" class="text-lg font-bold">Destinos</a></li>
           <li><a href="reserva.html" class="text-lg font-bold">Reservar</a></li>
+          <li><a href="contato.html" class="text-lg font-bold">Contato</a></li>
         </ul>
+        <button class="bg-blue-700 text-white py-2 px-4 rounded-lg hover:bg-blue-600 hidden md:block">
+          <a href="login.html">Login</a>
+        </button>
       </nav>
     </div>
-  </header>
+
+    <!-- Menu para dispositivos móveis -->
+  <div id="mobile-menu" class="hidden bg-blue-800 text-white flex-col items-start space-y-4 p-4 md:hidden">
+    <a href="index.html" class="text-lg font-bold block">Home</a>
+    <a href="sobre.html" class="text-lg font-bold block">Sobre</a>
+    <a href="destino.html" class="text-lg font-bold block">Destinos</a>
+    <a href="reserva.html" class="text-lg font-bold block">Reservar</a>
+    <a href="contato.html" class="text-lg font-bold block">Contato</a>
+    <a href="login.html" class="bg-blue-700 text-white py-2 px-4 rounded-lg hover:bg-blue-600 block">Login</a>
+  </div>
+</header>
 
   <!-- Perfil do Usuário -->
   <main class="container mx-auto p-6">
@@ -93,6 +114,21 @@
         window.location.href = '/login.html';
       }
     });
+
+      // Controle do menu responsivo
+  document.getElementById("menu-toggle").addEventListener("click", () => {
+    const mobileMenu = document.getElementById("mobile-menu");
+    mobileMenu.classList.toggle("hidden"); // Exibe ou oculta o menu
+  });
+
+  // Fechar o menu ao redimensionar a janela (se for desktop)
+  window.addEventListener("resize", () => {
+    const mobileMenu = document.getElementById("mobile-menu");
+    if (window.innerWidth >= 768) {
+      mobileMenu.classList.add("hidden");
+    }
+  });
+
   </script>
 </body>
 
