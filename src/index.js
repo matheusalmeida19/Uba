@@ -25,11 +25,11 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// Servir arquivos estáticos
-const staticPath = path.join(__dirname, 'src/pages');
+// Caminho corrigido para os arquivos estáticos
+const staticPath = path.resolve(__dirname, './src/pages'); // Usando `path.resolve` para evitar duplicações
 console.log(`Servindo arquivos estáticos de: ${staticPath}`);
-app.use(express.static(staticPath));
-app.use('/image', express.static(path.join(__dirname, 'src/image')));
+app.use(express.static(staticPath)); // Servir arquivos estáticos do diretório correto
+app.use('/image', express.static(path.resolve(__dirname, './src/image'))); // Servir imagens corretamente
 
 // Rota principal (index.html)
 app.get('/', (req, res) => {
