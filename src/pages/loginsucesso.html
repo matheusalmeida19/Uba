@@ -3,21 +3,97 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login Bem-Sucedido</title>
+  <title>Ubá | Login Bem-Sucedido</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="shortcut icon" href="../image/boat.png" type="image/x-icon">
 </head>
-<body>
-  <h1>Login realizado com sucesso!</h1>
-  <p>Bem-vindo(a), <span id="username"></span>!</p>
-  <button onclick="irParaHome()">Ir para a página inicial</button>
+<body class="font-sans bg-gray-900 text-white">
+  <!-- Cabeçalho -->
+  <header class="bg-blue-800 text-white shadow-md">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <!-- Logo -->
+      <div id="uba" class="flex items-center space-x-2">
+        <a href="index.html" class="flex items-center space-x-2">
+          <span class="material-symbols-outlined text-4xl">directions_boat</span>
+          <h2 class="text-3xl font-semibold">Ubá</h2>
+        </a>
+      </div>
+      <!-- Botão do menu para dispositivos móveis -->
+      <button id="menu-toggle" class="md:hidden focus:outline-none">
+        <span class="material-symbols-outlined text-3xl">menu</span>
+      </button>
+      <!-- Menu de navegação -->
+      <nav id="menu" class="hidden md:flex space-x-6 items-center">
+        <ul class="flex flex-col md:flex-row md:space-x-6">
+          <li><a href="index.html" class="text-lg font-bold">Home</a></li>
+          <li><a href="sobre.html" class="text-lg font-bold">Sobre</a></li>
+          <li><a href="destino.html" class="text-lg font-bold">Destinos</a></li>
+          <li><a href="reserva.html" class="text-lg font-bold">Reservar</a></li>
+          <li><a href="contato.html" class="text-lg font-bold">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Conteúdo principal -->
+  <main class="flex-grow flex flex-col items-center justify-center px-6 py-12">
+    <h1 class="text-4xl font-bold text-blue-400 mb-4">Login realizado com sucesso!</h1>
+    <p class="text-lg mb-6">Bem-vindo(a), <span id="username" class="font-semibold text-blue-500"></span>!</p>
+    <button onclick="irParaHome()" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg">
+      Ir para a página inicial
+    </button>
+  </main>
+
+  <!-- Rodapé -->
+  <footer class="bg-blue-800 text-white py-6">
+    <div class="container mx-auto text-center">
+      <div class="mb-4">
+        <span class="material-symbols-outlined text-3xl">directions_boat</span>
+        <h2 class="text-2xl font-semibold">Ubá</h2>
+      </div>
+      <nav>
+        <ul class="flex justify-center space-x-6 mb-4">
+          <li><a href="index.html" class="hover:text-gray-200">Home</a></li>
+          <li><a href="sobre.html" class="hover:text-gray-200">Sobre</a></li>
+          <li><a href="destino.html" class="hover:text-gray-200">Destinos</a></li>
+          <li><a href="contato.html" class="hover:text-gray-200">Contato</a></li>
+        </ul>
+      </nav>
+      <hr class="border-gray-300 mb-4">
+      <p>©2024 Ubá Fluvial. Todos os direitos reservados.</p>
+    </div>
+  </footer>
 
   <script>
+    // Atualiza o nome do usuário dinamicamente com base nos parâmetros da URL
     const params = new URLSearchParams(window.location.search);
     const username = params.get('username');
-    document.getElementById('username').textContent = username;
+    if (username) {
+      document.getElementById('username').textContent = username;
+    }
 
+    // Redireciona para a página inicial
     function irParaHome() {
       window.location.href = '/';
     }
+
+    // Controle do menu responsivo
+    document.getElementById("menu-toggle").addEventListener("click", () => {
+      const menu = document.getElementById("menu");
+      menu.classList.toggle("hidden");
+    });
+
+    // Atualiza o menu com o perfil do usuário após login
+    document.addEventListener("DOMContentLoaded", () => {
+      const username = params.get('username');
+      if (username) {
+        const menu = document.getElementById("menu");
+        const profileItem = document.createElement("li");
+        profileItem.innerHTML = `<a href="/perfil" class="text-lg font-bold">Perfil (${username})</a>`;
+        menu.querySelector("ul").appendChild(profileItem);
+      }
+    });
   </script>
 </body>
 </html>
