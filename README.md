@@ -13,7 +13,7 @@ O projeto Ubá busca promover a integração e o desenvolvimento regional por me
 Tecnologias Utilizadas
 Front-end: HTML, CSS, JavaScript
 Back-end: Node.js, Express.js
-Banco de Dados: 
+Banco de Dados: Prisma com PostgreSQL
 Hospedagem: Render
 
 Sobre o Nome "Ubá"
